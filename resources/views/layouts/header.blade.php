@@ -10,7 +10,7 @@
 		<meta name="keywords" content="Admin, Admin Template, Dashboard, Responsive, Admin Dashboard, Bootstrap, Bootstrap 4, Clean, Backend, Jquery, Modern, Web App, Admin Panel, Ui, Premium Admin Templates, Flat, Admin Theme, Ui Kit, Bootstrap Admin, Responsive Admin, Application, Template, Admin Themes, Dashboard Template"/>
 
 		<!-- Title -->
-		<title>Tigrillo App</title>
+		<title>CCTLINK - TEST ENVIRONMENT</title>
 
 		<!--Favicon -->
 		<link rel="icon" href="{{ asset('images/brand/favicon.ico') }}">
