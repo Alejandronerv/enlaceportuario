@@ -14,7 +14,7 @@
 										<div class="card p-4">
 											<div class="card-body">
 												<div class="text-center title-style mb-6">
-													<h1 class="mb-2">Login</h1>
+													<h1 class="mb-2">Member Login</h1>
 													<hr>
 													{{-- <p class="text-muted">Sign In to your account</p> --}}
 												</div>

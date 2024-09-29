@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -19,11 +20,15 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->username, 'password' => $request->password])) {
             return redirect()->intended('/dashboard');
-        }
-        else {
+        } else {
             return back()->withErrors([
                 'email' => 'Wrong credential, please try again.'
             ]);
         }
-}
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/')->with('status', 'You have been logged out!');
+    }
 }

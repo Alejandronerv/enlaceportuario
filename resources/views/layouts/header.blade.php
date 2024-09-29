@@ -5,12 +5,12 @@
 		<!-- Meta data -->
 		<meta charset="UTF-8">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-		<meta content="Dashtic - Bootstrap Webapp Responsive Dashboard Simple Admin Panel Premium HTML5 Template" name="description">
-		<meta content="Spruko Technologies Private Limited" name="author">
-		<meta name="keywords" content="Admin, Admin Template, Dashboard, Responsive, Admin Dashboard, Bootstrap, Bootstrap 4, Clean, Backend, Jquery, Modern, Web App, Admin Panel, Ui, Premium Admin Templates, Flat, Admin Theme, Ui Kit, Bootstrap Admin, Responsive Admin, Application, Template, Admin Themes, Dashboard Template"/>
+		<meta content="CCT Link Dashboard" name="CCT Link">
+		<meta content="NerCorp" name="NervCorp">
+		<meta name="keywords" content="CCT Link, Dashboard,Colon Container Terminal"/>
 
 		<!-- Title -->
-		<title>Tigrillo App</title>
+		<title>CCT Link</title>
 
 		<!--Favicon -->
 		<link rel="icon" href="{{ asset('images/brand/favicon.ico') }}">

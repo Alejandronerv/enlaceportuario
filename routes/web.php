@@ -22,6 +22,7 @@ Route::post('/', [AuthController::class, 'validateLogin'])->name('login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard')->middleware('auth');;
+})->name('dashboard')->middleware('auth');
 
 // Route::post('/logout', 'AuthController@logout')->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
