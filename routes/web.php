@@ -12,17 +12,26 @@ use App\Http\Controllers\AuthController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// LOGIN ROUTES****************************************
 Route::get('/', function () {
     return view('login');
 })->name('login');
 
 Route::post('/', [AuthController::class, 'validateLogin'])->name('login');
 
+Route::get('/forgot-password', function () {
+    return view('forgot-password');
+})->name('forgot-password');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// *****************************************************
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
 
 // Route::post('/logout', 'AuthController@logout')->name('logout');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

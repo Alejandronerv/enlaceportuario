@@ -47,14 +47,14 @@
 													</form>
 
 													<div class="col-12">
-														<a href="forgot-password-1.html" class="btn btn-link box-shadow-0 px-0">Forgot password?</a>
+														<a href="{{ route('forgot-password') }}" class="btn btn-link box-shadow-0 px-0">Forgot password?</a>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 									<div class="text-center pt-4">
-										<div class="font-weight-normal fs-16">You Don't have an account <a class="btn-link font-weight-normal" href="#">Register Here</a></div>
+										<div class="font-weight-normal fs-16">You Don't have an account <a class="btn-link font-weight-normal" href="{{ route('register') }}">Register Here</a></div>
 									</div>
 								</div>
 							</div>
