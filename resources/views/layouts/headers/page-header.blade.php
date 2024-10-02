@@ -1,6 +1,6 @@
 <div class="page-header">
     <div class="page-leftheader">
-        <h4 class="page-title">CCTLINK</h4>
+        <h4 class="page-title">Announcements</h4>
     </div>
     {{-- <div class="page-rightheader ml-auto d-lg-flex d-none">
         <div class="ml-5 mb-0">
