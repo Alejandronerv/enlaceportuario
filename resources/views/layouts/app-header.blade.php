@@ -1,7 +1,7 @@
 <div class="app-header header top-header">
     <div class="container">
         <div class="d-flex">
-            <a class="header-brand text-left" href="index.html">
+            <a class="header-brand text-left" href="#">
                 <img src="/images/brand/logo.png" class="header-brand-img desktop-lgo" alt="CCTLink logo">
                 <img src="/images/brand/logo1.png" class="header-brand-img dark-logo" alt="CCTLink logo">
                 <img src="/images/brand/favicon.png" class="header-brand-img mobile-logo" alt="CCTLink logo">
