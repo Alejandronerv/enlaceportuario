@@ -16,6 +16,6 @@ class PostController extends Controller
     public function apiTest()
     {
         $posts = $this->apiService->getPosts();
-        return view('apitest', compact('posts'));
+        return response()->json($posts);
     }
 }
