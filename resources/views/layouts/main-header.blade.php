@@ -48,6 +48,13 @@
     <!--Daterangepicker css-->
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-daterangepicker/daterangepicker.css') }}">
 
+    <!-- Quill css -->
+    <link rel="stylesheet" href="{{ asset('plugins/quill/quill.snow.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/quill/quill.bubble.css') }}">
+
+    <!-- WYSIWYG Editor css -->
+    <link rel="stylesheet" href="{{ asset('plugins/wysiwyag/richtext.css') }}">
+
 </head>
 
 <body class="light-mode">

@@ -18,6 +18,7 @@
 						<!--Page header-->
 						@include('layouts.headers.page-header')
 						<!--End Page header-->
+		
 
 	<!-- Announcements Row -->
 	<div class="row">

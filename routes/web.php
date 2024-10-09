@@ -41,3 +41,8 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 
 // API RESTFUL
 Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
+
+// ANNOUNCEMENTS
+Route::get('/announcements', function () {
+    return view('announcements.create');
+})->name('announcements');

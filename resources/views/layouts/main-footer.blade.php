@@ -85,5 +85,9 @@
 		<!-- Custom js-->
 		<script src="{{ asset('js/custom.js') }}"></script>
 
+		<!-- WYSIWYG Editor js -->
+		<script src="{{ asset('plugins/wysiwyag/jquery.richtext.js') }}"></script>
+		<script src="{{ asset('js/form-editor.js') }}"></script>
+
 	</body>
 </html>
