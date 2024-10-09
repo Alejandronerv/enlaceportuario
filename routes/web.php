@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +38,6 @@ Route::get('/dashboard', function () {
 
 // SEND EMAIL TEST
 Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
+
+// API RESTFUL
+Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
