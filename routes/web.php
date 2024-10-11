@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AnnouncementController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,9 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
 
 // ANNOUNCEMENTS
-Route::get('/announcements', function () {
-    return view('announcements.create');
-})->name('announcements');
+    //  FORM
+    Route::get('/announcements.create', function () {
+        return view('announcements.create');
+    })->name('announcements.create');
+    // SAVE
+    Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save');
