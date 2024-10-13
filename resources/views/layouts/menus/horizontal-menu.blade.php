@@ -3,7 +3,7 @@
         <nav class="horizontalMenu clearfix">
             <ul class="horizontalMenu-list">
                 <li aria-haspopup="true">
-                    <a href="#" class="sub-icon">
+                    <a href="{{ route('dashboard') }}" class="sub-icon">
                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                         Dashboard <i class="fa fa-angle-down horizontal-icon"></i>
                      </a>
@@ -88,7 +88,7 @@
                         Forms <i class="fa fa-angle-down horizontal-icon"></i>
                     </a>
                     <ul class="sub-menu">
-                        <li><a href="form-elements.html"> Announcements</a></li>
+                        <li><a href="{{ route('announcements.table') }}"> Announcements</a></li>
                         {{-- <li><a href="advanced-forms.html"> Advanced Forms</a></li>
                         <li><a href="form-wizard.html"> Form Wizard</a></li>
                         <li><a href="wysiwyag.html"> Form Edit</a></li>

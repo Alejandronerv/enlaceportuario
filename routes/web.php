@@ -44,9 +44,21 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
 
 // ANNOUNCEMENTS
+    
     //  FORM
     Route::get('/announcements.create', function () {
         return view('announcements.create');
     })->name('announcements.create');
+    
     // SAVE
     Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save');
+
+    // ANNOUNCEMENTS LIST   
+    Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table');
+
+
+    // SINGLE POST
+    Route::get('/announcements.post', function () {
+        return view('announcements.post');
+    })->name('announcements.post');
+

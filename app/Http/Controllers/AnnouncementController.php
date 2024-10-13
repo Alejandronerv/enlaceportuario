@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+
 
 
 class AnnouncementController extends Controller
@@ -26,6 +26,14 @@ class AnnouncementController extends Controller
     $announcement->createUser = 'test@email.com';
     $announcement->save();
 
-    return redirect()->route('announcements.create')->with('success', 'Data saved successfully.');
+    return redirect()->route('announcements.table')->with('success', 'Data saved successfully.');
 }
+
+
+    public function table()
+    {
+        $announcements = Announcement::all();
+        return view('announcements.table', compact('announcements'));
+    }
+
 }

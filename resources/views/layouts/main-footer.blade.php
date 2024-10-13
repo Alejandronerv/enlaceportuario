@@ -74,6 +74,11 @@
 		<script src="{{ asset('plugins/datatable/js/buttons.print.min.js') }}"></script>
 		<script src="{{ asset('plugins/counters/counterup.min.js') }}"></script>
 		<script src="{{ asset('plugins/counters/waypoints.min.js') }}"></script>
+		<script src="{{ asset('plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+		<script src="{{ asset('plugins/datatable/dataTables.responsive.min.js') }}"></script>
+		<script src="{{ asset('plugins/datatable/responsive.bootstrap4.min.js') }}"></script>
+		<script src="{{ asset('js/datatables.js') }}"></script>
+
 
 		<!-- simplebar JS -->
 		<script src="{{ asset('plugins/simplebar/js/simplebar.min.js') }}"></script>
