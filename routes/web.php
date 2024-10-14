@@ -33,11 +33,10 @@ Route::get('/register', function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // *****************************************************
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [AnnouncementController::class, 'list'])->name('dashboard')->middleware('auth');
 
-// SEND EMAIL TEST
+
+// EMAIL RECOVERY
 Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
 
 // API RESTFUL
@@ -58,7 +57,8 @@ Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
 
 
     // SINGLE POST
-    Route::get('/announcements.post', function () {
-        return view('announcements.post');
-    })->name('announcements.post');
+    // Route::get('/announcements.post', function () {
+    //     return view('announcements.post');
+    // })->name('announcements.post');
+    Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post');
 

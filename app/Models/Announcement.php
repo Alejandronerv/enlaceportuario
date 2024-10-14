@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Announcement extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'anncsID';
     protected $fillable = ['anncsTitle', 'anncsBody'];
 
-    // protected $dates = ['availableDateTime', 'endDateTime', 
-    //                     'updateDateTime', 'created_at', 'updated_at'];
+    protected $dates = ['availableDateTime', 'endDateTime', 
+                        'updateDateTime', 'created_at', 'updated_at'];
 }

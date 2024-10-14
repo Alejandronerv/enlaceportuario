@@ -36,4 +36,27 @@ class AnnouncementController extends Controller
         return view('announcements.table', compact('announcements'));
     }
 
+    public function list()
+    {
+        $announcements = Announcement::all();
+        return view('dashboard', compact('announcements'));
+    }
+    
+    public function show(Request $request)
+    {
+        $request->validate([
+            'anncsID' => 'required|integer|exists:announcements,anncsID',
+        ]);
+
+        $announcement = Announcement::where('anncsID', $request->input('anncsID'))->first();
+
+        if (!$announcement) {
+            return redirect()->route('announcements.table')->with('error', 'Announcement not found.');
+        }
+
+        return view('announcements.post', compact('announcement'));
+    }
+
+
+
 }
