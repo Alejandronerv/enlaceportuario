@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\InventoryYardFileController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,8 +44,9 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 
 // API RESTFUL
     Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
-    Route::post('/auth', [PostController::class, 'getAuthToken'])->name('auth');
+    Route::post('/token', [PostController::class, 'getAuthToken']);
 
+    
 // ANNOUNCEMENTS
     
     //  FORM

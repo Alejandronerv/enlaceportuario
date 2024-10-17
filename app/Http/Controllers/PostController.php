@@ -20,9 +20,22 @@ class PostController extends Controller
     }
 
     // AUTH ENDPOINT
-    public function getAuthToken()
+    public function getAuthToken(Request $request)
     {
-        $token = $this->apiService->getToken();
-        return response()->json(['access_token' => $token]);
+        // Validar los datos
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Lógica de autenticación (ejemplo con Laravel Passport)
+        $credentials = $request->only('username', 'password');
+        if (Auth::attempt($credentials)) {
+            $token = auth()->user()->createToken('authToken')->accessToken;
+            return response()->json(['token'   
+ => $token], 200);
+        }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 }
