@@ -43,7 +43,7 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 
 // API RESTFUL
     Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
-    Route::post('/auth/token', [PostController::class, 'getAuthToken'])->name('auth.token');
+    Route::post('/auth', [PostController::class, 'getAuthToken'])->name('auth');
 
 // ANNOUNCEMENTS
     

@@ -23,6 +23,6 @@ class PostController extends Controller
     public function getAuthToken()
     {
         $token = $this->apiService->getToken();
-        return response()->json(['token' => $token]);
+        return response()->json(['access_token' => $token]);
     }
 }
