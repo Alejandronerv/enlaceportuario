@@ -27,4 +27,21 @@ class ApiService
             return ['error' => 'Request failed'];
         }
     }
+
+    public function getToken()
+    {
+        try {
+            $response = $this->client->request('POST', '/auth', [
+                'form_params' => [
+                    'username' => 'CLUSRADM',
+                    'password' => 'kL9!FG78Bd1',
+                ],
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+            return $data['token'] ?? null; 
+        } catch (RequestException $e) {
+            return null;
+        }
+    }
 }

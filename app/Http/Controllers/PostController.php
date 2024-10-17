@@ -18,4 +18,11 @@ class PostController extends Controller
         $posts = $this->apiService->getPosts();
         return response()->json($posts);
     }
+
+    // AUTH ENDPOINT
+    public function getAuthToken()
+    {
+        $token = $this->apiService->getToken();
+        return response()->json(['token' => $token]);
+    }
 }

@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\InventoryYardFileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +42,8 @@ Route::get('/dashboard', [AnnouncementController::class, 'list'])->name('dashboa
 Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
 
 // API RESTFUL
-Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
+    Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
+    Route::post('/auth/token', [PostController::class, 'getAuthToken'])->name('auth.token');
 
 // ANNOUNCEMENTS
     
@@ -62,3 +65,12 @@ Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
     // })->name('announcements.post');
     Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post');
 
+
+// INVENTORY YARD
+    //  FORM
+    Route::get('/yardinventory.form', function () {
+        return view('yardinventory.form');
+    })->name('yardinventory.form');
+
+    // SAVE
+    Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save');
