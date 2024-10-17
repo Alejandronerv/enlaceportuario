@@ -39,7 +39,7 @@ class ApiService
             ]);
 
             $data = json_decode($response->getBody(), true);
-            return $data['token'] ?? null; 
+            return $data['access_token'] ?? null;
         } catch (RequestException $e) {
             return null;
         }
