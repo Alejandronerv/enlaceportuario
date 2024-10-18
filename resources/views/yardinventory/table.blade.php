@@ -28,8 +28,8 @@
         
         <div class="form-group mb-0 mt-4 row">
             <div class="col mb-4">
-                {{-- <a href="{{ route('announcements.create') }}" class="btn btn-primary">+ Add New Announcement</a> --}}
-                <a href="{{ route('announcements.create') }}" class="btn btn-primary"><i class="fe fe-plus"></i>New Announcement</a>
+                {{-- <a href="{{ route('yardinventory.form') }}" class="btn btn-primary">+ Upload File</a> --}}
+                <a href="{{ route('yardinventory.form') }}" class="btn btn-primary"><i class="fe fe-plus"></i> Upload New File</a>
             </div>
         </div>
 
@@ -37,20 +37,20 @@
             <table class="table table-bordered text-nowrap" id="example1">
                 <thead>
                     <tr>
-                        <th class="wd-15p border-bottom-0">Title</th>
-                        <th class="wd-15p border-bottom-0">Available Date</th>
-                        <th class="wd-20p border-bottom-0">End Date</th>
-                        <th class="wd-15p border-bottom-0">Create by</th>
+                        <th class="wd-15p border-bottom-0">File Name</th>
+                        <th class="wd-15p border-bottom-0">Created At</th>
+                        <th class="wd-20p border-bottom-0">Agency</th>
+                        <th class="wd-15p border-bottom-0">Upload by</th>
                     </tr>
                 </thead>
                 <tbody>
                     
-                    @foreach($announcements as $announcement)
+                    @foreach($inventoryyardfile as $yardinventory)
                         <tr>
-                            <td>{{ $announcement->anncsTitle }}</td>
-                            <td>{{ $announcement->availableDateTime }}</td>
-                            <td>{{ $announcement->endDateTime }}</td>
-                            <td>{{ $announcement->createUser }}</td>
+                            <td>  <a href="{{ asset('storage/uploads/' . $yardinventory->file_name) }}">{{ $yardinventory->file_name }}</a></td>
+                            <td>{{ $yardinventory->created_at }}</td>
+                            <td>{{ $yardinventory->agency_code }}</td>
+                            <td>{{ $yardinventory->create_user }}</td>
                         </tr>
                     @endforeach
 

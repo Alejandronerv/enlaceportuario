@@ -52,27 +52,30 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
     //  FORM
     Route::get('/announcements.create', function () {
         return view('announcements.create');
-    })->name('announcements.create');
+    })->name('announcements.create')->middleware('auth');;
     
     // SAVE
-    Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save');
+    Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save')->middleware('auth');;
 
     // ANNOUNCEMENTS LIST   
-    Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table');
+    Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('auth');;
 
 
     // SINGLE POST
     // Route::get('/announcements.post', function () {
     //     return view('announcements.post');
     // })->name('announcements.post');
-    Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post');
+    Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post')->middleware('auth');;
 
 
 // INVENTORY YARD
     //  FORM
     Route::get('/yardinventory.form', function () {
         return view('yardinventory.form');
-    })->name('yardinventory.form');
+    })->name('yardinventory.form')->middleware('auth');;
 
     // SAVE
-    Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save');
+    Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save')->middleware('auth');;
+
+    // ANNOUNCEMENTS LIST   
+    Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth');;

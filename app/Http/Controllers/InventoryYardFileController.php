@@ -13,26 +13,33 @@ class InventoryYardFileController extends Controller
     public function save(Request $request)
     {
         $request->validate([
-          //'file_name' => 'required|file_name|mimes:csv,txt,xlsx|max:2048',
-            // Other validation rules...
+           'file_name' => 'required'
+            //Other validation rules...
         ]);
+           // $path = $request->file('file_name')->store('public/uploads');
+    
+           // Handle the file upload
+           if ($request->hasFile('file_name')) {
 
-    //     // Handle the file upload
-    //    // if ($request->hasFile('file')) {
              $file = $request->file('file_name');
-             $fileName = time() . '_' . $file->getClientOriginalName();
+             $fileName = $file->getClientOriginalName();
              $filePath = $file->storeAs('uploads', $fileName, 'public');
 
             $inventory_yard_file = new InventoryYardFile();
-            $inventory_yard_file->file_name = $request->input('file_name'); 
-            $inventory_yard_file->file_path = '/storage/' . $filePath;
+            $inventory_yard_file->file_name = $fileName;
             $inventory_yard_file->agency_code = $request->input('shipagency');
             $inventory_yard_file->create_user = 'test@email.com';
             $inventory_yard_file->save();
 
-            return redirect()->route('yardinventory.form')->with('success', 'Data saved successfully.');
-        //}
+            return redirect()->route('yardinventory.table')->with('success', 'Data saved successfully.');
+        }
 
          //return redirect()->route('yardinventory.form')->with('error', 'File upload failed.');
+    }
+
+    public function table()
+    {
+        $inventoryyardfile = InventoryYardFile::all();
+        return view('yardinventory.table', compact('inventoryyardfile'));
     }
 }

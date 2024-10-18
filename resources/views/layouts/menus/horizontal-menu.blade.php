@@ -89,6 +89,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li><a href="{{ route('announcements.table') }}"> Announcements</a></li>
+                        <li><a href="{{ route('yardinventory.table') }}"> Inventory Yard File Upload</a></li>
                         {{-- <li><a href="advanced-forms.html"> Advanced Forms</a></li>
                         <li><a href="form-wizard.html"> Form Wizard</a></li>
                         <li><a href="wysiwyag.html"> Form Edit</a></li>

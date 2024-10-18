@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('inventory_yard_files', function (Blueprint $table) {
             $table->id();
-            $table->string('short_description', 255);
             $table->string('file_name', 255);
             $table->string('agency_code', 255);
             $table->string('create_user', 255);
-            $table->timestamp('create_at');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
     
