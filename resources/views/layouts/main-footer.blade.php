@@ -94,5 +94,10 @@
 		<script src="{{ asset('plugins/wysiwyag/jquery.richtext.js') }}"></script>
 		<script src="{{ asset('js/form-editor.js') }}"></script>
 
+		<!-- Form Advanced Element -->
+		<script src="{{ asset('js/formelementadvnced.js') }}"></script>
+		<script src="{{ asset('js/form-elements.js') }}"></script>
+		<script src="{{ asset('js/file-upload.js') }}"></script>
+
 	</body>
 </html>
