@@ -45,9 +45,9 @@ class ApiAuthController extends Controller
         $accessToken = Session::get('accessToken');
         $tokenType = Session::get('tokenType');
 
-        $response = $client->get($api_host.'/api/v1/OperationBerth', [
+        $response = $client->get($api_host.'/api/ver1/OperationBerth', [
             'headers' => [
-                'Authorization' => $tokenType . ' ' . $accessToken,
+                'Authorization' => $accessToken,
             ],
             'form_params' => [
                 'PI_DATE_FROM_ETB' => env('19000101'),
