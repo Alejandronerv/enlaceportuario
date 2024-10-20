@@ -50,8 +50,8 @@ class ApiAuthController extends Controller
                 'Authorization' => $accessToken,
             ],
             'form_params' => [
-                'PI_DATE_FROM_ETB' => env('19000101'),
-                'PI_DATE_TO_ETB' => env('20240101')
+                'PI_DATE_FROM_ETB' => '19000101',
+                'PI_DATE_TO_ETB' => '20240101'
             ]
         ]);
 
