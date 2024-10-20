@@ -1,8 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Services\ApiService;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -18,6 +21,7 @@ class PostController extends Controller
         $posts = $this->apiService->getPosts();
         return response()->json($posts);
     }
+<<<<<<< HEAD
 
     // AUTH ENDPOINT
     public function getAuthToken(Request $request)
@@ -38,4 +42,6 @@ class PostController extends Controller
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }
+=======
+>>>>>>> feature/berth-report
 }
