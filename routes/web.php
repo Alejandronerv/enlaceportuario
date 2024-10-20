@@ -46,7 +46,7 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 // API RESTFUL
     Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
     Route::get('/autorizo', [ApiAuthController::class, 'apiAuth'])->name('autorizo');
-
+    Route::get('/operation-berth', [ApiAuthController::class, 'operationBerth'])->name('operation.berth');
     
 // ANNOUNCEMENTS
     
