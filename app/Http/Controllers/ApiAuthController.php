@@ -39,32 +39,17 @@ class ApiAuthController extends Controller
     public function operationBerth()
     {
         $client = new Client();
-        $api_host = env('API_HOST');
 
-        // Retrieve tokens from session
-        $accessToken = Session::get('accessToken');
-        $tokenType = Session::get('tokenType');
-
-        $response = $client->get($api_host.'/api/ver1/OperationBerth', [
+        $response = $client->request('GET', 'http://201.218.201.18:5000/api/ver1/OperationBerth/20140101/20141231', [
             'headers' => [
-                'Authorization' => $accessToken,
+                'accept' => 'application/json',
+                'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJDTFVTUkFETSIsImV4cCI6MTczMDA2NjQzOH0.ABimUL9Dr4y6ZzRpeFpeEdHosFHZhVHw28kfqr2o0e0',
             ],
-            'form_params' => [
-                'PI_DATE_FROM_ETB' => '19000101',
-                'PI_DATE_TO_ETB' => '20240101'
-            ]
         ]);
 
-        // Handle the response
-        if ($response->getStatusCode() === 200) {
-            // Successful request
-            $body = $response->getBody();
-            $data = json_decode($body, true);
-            return response()->json($data);
-        } else {
-            // Handle error
-            return response()->json(['error' => 'Request failed'], $response->getStatusCode());
-        }
+        $data = json_decode($response->getBody()->getContents());
+
+        return $data;
     }
 
 }
