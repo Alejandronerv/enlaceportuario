@@ -62,11 +62,7 @@ class ApiService
     {
         try {
             $response = $this->client->request('POST', '/auth', [
-<<<<<<< HEAD
-                'form_params' => [
-=======
                 'multipart' => [
->>>>>>> feature/berth-report
                     'username' => 'user',
                     'password' => 'passw',
                 ],
