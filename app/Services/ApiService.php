@@ -32,9 +32,9 @@ class ApiService
     {
         try {
             $response = $this->client->request('POST', '/auth', [
-                'form_params' => [
-                    'username' => 'CLUSRADM',
-                    'password' => 'kL9!FG78Bd1',
+                'multipart' => [
+                    'username' => 'user',
+                    'password' => 'passw',
                 ],
             ]);
 

@@ -1,8 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Services\ApiService;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -17,12 +20,5 @@ class PostController extends Controller
     {
         $posts = $this->apiService->getPosts();
         return response()->json($posts);
-    }
-
-    // AUTH ENDPOINT
-    public function getAuthToken()
-    {
-        $token = $this->apiService->getToken();
-        return response()->json(['token' => $token]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\InventoryYardFileController;
+use App\Http\Controllers\ApiAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 
 // API RESTFUL
     Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
-    Route::post('/auth/token', [PostController::class, 'getAuthToken'])->name('auth.token');
+    Route::get('/autorizo', [ApiAuthController::class, 'apiAuth'])->name('autorizo');
 
 // ANNOUNCEMENTS
     
