@@ -58,6 +58,7 @@ class ApiAuthController extends Controller
         ]);
 
         $data = json_decode($response->getBody()->getContents());
+        $berthFields = $data; // Assuming $data contains the fields needed for the view
         return view('berth.table', compact('berthFields'));
         // return $data;
     }
