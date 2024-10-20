@@ -49,7 +49,7 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
     // Route::get('/operation-berth', [ApiAuthController::class, 'operationBerth'])->name('operation.berth');
     Route::get('/berth.table', function () {
         return view('berth.table');
-    })->name('bert.table');
+    })->name('berth.table');
 
 // ANNOUNCEMENTS
     
