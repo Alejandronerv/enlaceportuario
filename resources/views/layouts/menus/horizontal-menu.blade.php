@@ -20,57 +20,11 @@
                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                         Inquiries <i class="fa fa-angle-down horizontal-icon"></i>
                     </a>
-                    {{-- <div class="horizontal-megamenu clearfix">
-                        <div class="container">
-                            <div class="mega-menubg">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-12 col-xs-12 link-list">
-                                        <ul>
-                                            <li><a href="chat.html">Chat</a></li>
-                                            <li><a href="chat2.html">Chat 02</a></li>
-                                            <li><a href="chat3.html">Chat 03</a></li>
-                                            <li><a href="contact-list.html">Contact list</a></li>
-                                            <li><a href="contact-list2.html">Contact list 02</a></li>
-                                            <li><a href="file-manager.html">File Manager</a></li>
-                                            <li><a href="file-manager-list.html">File Manager 02</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3 col-md-12 col-xs-12 link-list">
-                                        <ul>
-                                            <li><a href="todo-list.html">Todo List</a></li>
-                                            <li><a href="todo-list2.html">Todo List 02</a></li>
-                                            <li><a href="todo-list3.html">Todo List 03</a></li>
-                                            <li><a href="users-list-1.html">User List 01</a></li>
-                                            <li><a href="users-list-2.html">User List 02</a></li>
-                                            <li><a href="users-list-3.html">User List 03</a></li>
-                                            <li><a href="users-list-4.html">User List 04</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3 col-md-12 col-xs-12 link-list">
-                                        <ul>
-                                            <li><a href="calendar.html"> Calendar</a></li>
-                                            <li><a href="dragula.html"> Dragula Card</a></li>
-                                            <li><a href="cookies.html"> Cookies</a></li>
-                                            <li><a href="image-comparison.html"> Image Comparision</a></li>
-                                            <li><a href="img-crop.html"> Image Crop</a></li>
-                                            <li><a href="page-sessiontimeout.html"> Page-sessiontimeout</a></li>
-                                            <li><a href="notify.html"> Notifications</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3 col-md-12 col-xs-12 link-list">
-                                        <ul>
-                                            <li><a href="sweetalert.html"> Sweet alerts</a></li>
-                                            <li><a href="rangeslider.html"> Range slider</a></li>
-                                            <li><a href="counters.html"> Counters</a></li>
-                                            <li><a href="loaders.html"> Loaders</a></li>
-                                            <li><a href="time-line.html"> Time Line</a></li>
-                                            <li><a href="rating.html"> Rating</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+                    <ul class="sub-menu">
+                        <li><a href="#"> Operation Berth</a></li>
+                        <li><a href="#"> Container Operation Information</a></li>
+                        <li><a href="#"> Vessel Operation Summary </a></li>
+                    </ul>
                 </li>
                 {{-- <li aria-haspopup="true">
                     <a href="#" class="sub-icon">

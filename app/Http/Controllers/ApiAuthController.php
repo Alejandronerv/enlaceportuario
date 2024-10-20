@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 // use Illuminate\Http\Request;
 
@@ -44,9 +45,12 @@ class ApiAuthController extends Controller
         $api_host = env('API_HOST');
          // Retrieve tokens from session
          $accessToken = Session::get('accessToken');
-         $tokenType = Session::get('tokenType');
+        //  $tokenType = Session::get('tokenType');
 
-        $response = $client->request('GET', $api_host.'/api/ver1/OperationBerth/20140101/20141231', [
+         $currentDate = Carbon::now();
+         $formattedDate = $currentDate->format('Ymd');
+
+        $response = $client->request('GET', $api_host.'/api/ver1/OperationBerth/'.$formattedDate.'/'.$formattedDate, [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,
@@ -54,8 +58,8 @@ class ApiAuthController extends Controller
         ]);
 
         $data = json_decode($response->getBody()->getContents());
-
-        return $data;
+        return view('berth.table', compact('berthFields'));
+        // return $data;
     }
 
 }
