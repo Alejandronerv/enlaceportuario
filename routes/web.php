@@ -48,7 +48,7 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
     Route::get('/autorizo', [ApiAuthController::class, 'apiAuth'])->name('autorizo');
     // Route::get('/operation-berth', [ApiAuthController::class, 'operationBerth'])->name('operation.berth');
     Route::get('/berth.table', function () {
-        return view('bert.table');
+        return view('berth.table');
     })->name('bert.table');
 
 // ANNOUNCEMENTS
