@@ -26,9 +26,11 @@ class ApiAuthController extends Controller
         // Manejar la respuesta
         if ($response->getStatusCode() === 200) {
             // Handle successful authentication
-            $body = $response->getBody();
+            $body = $response->getBody();                            
             $data = json_decode($body, true);
-            return response()->json($data);
+            // return response()->json($data);
+            $accessToken = $data['access_token'] ?? null;
+            $tokenType = $data['token_type'] ?? null;
         } else {
             // Handle authentication error
             return response()->json(['error' => 'Authentication failed'], $response->getStatusCode());
@@ -39,11 +41,15 @@ class ApiAuthController extends Controller
     public function operationBerth()
     {
         $client = new Client();
+        $api_host = env('API_HOST');
+         // Retrieve tokens from session
+         $accessToken = Session::get('accessToken');
+         $tokenType = Session::get('tokenType');
 
-        $response = $client->request('GET', 'http://201.218.201.18:5000/api/ver1/OperationBerth/20140101/20141231', [
+        $response = $client->request('GET', $api_host.'/api/ver1/OperationBerth/20140101/20141231', [
             'headers' => [
                 'accept' => 'application/json',
-                'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJDTFVTUkFETSIsImV4cCI6MTczMDA2NjQzOH0.ABimUL9Dr4y6ZzRpeFpeEdHosFHZhVHw28kfqr2o0e0',
+                'Authorization' => 'Bearer ' . $accessToken,
             ],
         ]);
 
