@@ -46,14 +46,14 @@
                     @foreach($berthFields as $berthField)
                         <tr>
                             <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
-                            <td>{{ $berthField->PO_BERTH_ID }}</td>
+                            <td>{{ $berthField->PO_PS }}</td>
+                            <td>{{ $berthField->PO_VESSEL_NAME }}</td>
+                            <td>{{ $berthField->PO_VESSEL_CODE }}</td>
+                            <td>{{ $berthField->PO_ARR_VOYAGE }}</td>
+                            <td>{{ $berthField->PO_DEP_VOYAGE }}</td>
+                            <td>{{ $berthField->PO_ETA_DATE }}</td>
+                            <td>{{ $berthField->PO_ETB_DATE }}</td>
+                            <td>{{ $berthField->PO_ETD_DATE }}</td>
                         </tr>
                     @endforeach
 
