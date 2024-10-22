@@ -44,12 +44,12 @@
                     @foreach($containerFields as $containerField)
                         <tr>
                             <td>{{ $containerField->PO_VESSEL_NAME }}</td>
-                            <td>{{ $containerField->PO_TYPE }}</td>
-                            <td>{{ $containerField->PO_SHIPPING_LINE }}</td>
-                            <td>{{ $containerField->PO_ARR_DATE }}</td>
-                            <td>{{ $containerField->PO_ARR_TIME }}</td>
-                            <td>{{ $containerField->PO_DEP_DATE }}</td>
-                            <td>{{ $containerField->PO_DEP_TIME }}</td>
+                            <td>{{ $containerField->PO_VESSEL_NAME }}</td>
+                            <td>{{ $containerField->PO_VESSEL_NAME }}</td>
+                            <td>{{ $containerField->PO_VESSEL_NAME }}</td>
+                            <td>{{ $containerField->PO_VESSEL_NAME }}</td>
+                            <td>{{ $containerField->PO_VESSEL_NAME }}</td>
+                            <td>{{ $containerField->PO_VESSEL_NAME }}</td>
 
 
                         </tr>
