@@ -46,10 +46,6 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 // API RESTFUL
     Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
     Route::get('/autorizo', [ApiAuthController::class, 'apiAuth'])->name('autorizo');
-    // Route::get('/operation-berth', [ApiAuthController::class, 'operationBerth'])->name('operation.berth');
-    // Route::get('/berth.table', function () {
-    //     return view('berth.table');
-    // })->name('berth.table');
     Route::get('/berth.table', [ApiAuthController::class, 'operationBerth'])->name('berth.table');
 
 // ANNOUNCEMENTS
@@ -67,9 +63,6 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 
 
     // SINGLE POST
-    // Route::get('/announcements.post', function () {
-    //     return view('announcements.post');
-    // })->name('announcements.post');
     Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post')->middleware('auth');;
 
 
@@ -82,5 +75,18 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
     // SAVE
     Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save')->middleware('auth');;
 
-    // ANNOUNCEMENTS LIST   
+    // LIST   
     Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth');;
+
+// CONTAINER OPERATION INFORMATION
+
+    //  SEARCH FORM
+    Route::get('/container-info.form', function () {
+        return view('container-info.form');
+    })->name('container-info.form');
+
+    Route::post('/container-info.search', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.search');
+    
+    
+    Route::get('/container-info.table', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.table');
+

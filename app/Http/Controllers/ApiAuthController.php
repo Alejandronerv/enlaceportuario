@@ -45,7 +45,6 @@ class ApiAuthController extends Controller
         $api_host = env('API_HOST');
          // Retrieve tokens from session
          $accessToken = Session::get('accessToken');
-        //  $tokenType = Session::get('tokenType');
 
          $currentDate = Carbon::now();
          $formattedDate = $currentDate->format('Ymd');
@@ -60,6 +59,27 @@ class ApiAuthController extends Controller
         $data = json_decode($response->getBody()->getContents());
         $berthFields = $data; // Assuming $data contains the fields needed for the view
         return view('berth.table', compact('berthFields'));
+        // return $data;
+    }
+
+    public function containerOperationInformation(Request $request)
+    {
+        $client = new Client();
+        $api_host = env('API_HOST');
+        $containerNumber = $request->input('inputContainerNumber');
+         // Retrieve tokens from session
+         $accessToken = Session::get('accessToken');
+
+        $response = $client->request('GET', $api_host.'/api/ver1/CntrOperationInformation/'.$containerNumber, [
+            'headers' => [
+                'accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $accessToken,
+            ],
+        ]);
+
+        $data = json_decode($response->getBody()->getContents());
+        $berthFields = $data; // Assuming $data contains the fields needed for the view
+        return view('container-info.table', compact('containerFields'));
         // return $data;
     }
 
