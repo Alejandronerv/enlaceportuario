@@ -16,7 +16,11 @@
             <div class="container">
 
                 <!--Page header-->
-                @include('layouts.headers.page-header')
+                <div class="page-header">
+                    <div class="page-leftheader">
+                        <h4 class="page-title">Operation Berth</h4>
+                    </div>
+                </div>
                 <!--End Page header-->
 
 {{-- DATA TABLE --}}
@@ -27,7 +31,7 @@
     <div class="card-body">
     
         <div class="table-responsive">
-            <table class="table table-bordered text-nowrap" id="example1">
+            <table class="table table-bordered text-nowrap key-buttons" id="example1">
                 <thead>
                     <tr>
                         <th class="wd-15p border-bottom-0">Berth</th>
