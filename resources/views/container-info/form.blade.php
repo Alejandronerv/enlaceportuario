@@ -16,7 +16,11 @@
             <div class="container">
 
                 <!--Page header-->
-                @include('layouts.headers.page-header')
+                <div class="page-header">
+                    <div class="page-leftheader">
+                        <h4 class="page-title">Container Information</h4>
+                    </div>
+                </div>
                 <!--End Page header-->
 
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">

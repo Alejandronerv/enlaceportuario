@@ -16,7 +16,7 @@
             <div class="container">
 
                 <div class="page-leftheader">
-                    <h4 class="page-title">Yard Inventory</h4>
+                    <h4 class="page-title">Yard Inventory File Upload</h4>
                 </div>
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                     <div class="card">
