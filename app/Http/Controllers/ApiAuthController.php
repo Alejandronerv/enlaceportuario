@@ -83,4 +83,24 @@ class ApiAuthController extends Controller
         // return $data;
     }
 
+    public function vesselOperationSummary()
+    {
+        $client = new Client();
+        $api_host = env('API_HOST');
+         // Retrieve tokens from session
+         $accessToken = Session::get('accessToken');
+
+        $response = $client->request('GET', $api_host.'/api/ver1/VesselOperationSummary/UMS', [
+            'headers' => [
+                'accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $accessToken,
+            ],
+        ]);
+
+        $data = json_decode($response->getBody()->getContents());
+        $veselFields = $data; // Assuming $data contains the fields needed for the view
+        return view('vessel-operation-summary.table', compact('veselFields'));
+        // return $data;
+    }
+
 }

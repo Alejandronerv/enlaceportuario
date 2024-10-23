@@ -23,7 +23,7 @@
                     <ul class="sub-menu">
                         <li><a href="{{ route('berth.table') }}"> Operation Berth</a></li>
                         <li><a href="{{ route('container-info.form') }}"> Container Operation Information</a></li>
-                        {{-- <li><a href="#"> Vessel Operation Summary </a></li> --}}
+                        <li><a href="{{ route('vessel-operation-summary.table') }}"> Vessel Operation Summary</a></li>
                     </ul>
                 </li>
                 {{-- <li aria-haspopup="true">

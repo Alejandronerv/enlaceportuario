@@ -90,3 +90,7 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
     
     Route::get('/container-info.table', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.table');
 
+// VESSEL OPERATION SUMMARY
+
+    Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table');
+
