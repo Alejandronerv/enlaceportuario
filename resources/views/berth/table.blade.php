@@ -31,7 +31,7 @@
     <div class="card-body">
     
         <div class="table-responsive">
-            <table class="table table-bordered text-nowrap key-buttons" id="example1">
+            <table class="table table-bordered text-nowrap key-buttons" id="example">
                 <thead>
                     <tr>
                         <th class="wd-15p border-bottom-0">Berth</th>
