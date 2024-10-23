@@ -90,7 +90,7 @@ class ApiAuthController extends Controller
          // Retrieve tokens from session
          $accessToken = Session::get('accessToken');
 
-        $response = $client->request('GET', $api_host.'/api/ver1/VesselOperationSummary/UMS', [
+        $response = $client->request('GET', $api_host.'/api/ver1/VesselOperationSummary/EMC', [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,
