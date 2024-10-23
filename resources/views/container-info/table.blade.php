@@ -34,8 +34,9 @@
                         <th class="wd-15p border-bottom-0">Type</th>
                         <th class="wd-20p border-bottom-0">Shipping Line</th>
                         <th class="wd-15p border-bottom-0">Arr Date</th>
+                        <th class="wd-15p border-bottom-0">Arr Time</th>
                         <th class="wd-15p border-bottom-0">Dep Date</th>
-                        <th class="wd-15p border-bottom-0">Time</th>
+                        <th class="wd-15p border-bottom-0">Dep Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,7 @@
                             <td>{{ $containerField->PO_TYPE }}</td>
                             <td>{{ $containerField->PO_SHIPPING_LINE }}</td>
                             <td>{{ $containerField->PO_ARR_DATE }}</td>
+                            <td>{{ $containerField->PO_ARR_TIME }}</td>
                             <td>{{ $containerField->PO_DEP_DATE }}</td>
                             <td>{{ $containerField->PO_DEP_TIME }}</td>
                         </tr>
