@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Services\UserService;
 
 class AuthController extends Controller
 {
+    protected $userService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
     public function validateLogin(Request $request)
     {
         // Aquí validarías los datos del usuario y los autenticarías
@@ -15,10 +22,13 @@ class AuthController extends Controller
 
         $username = $request->username;
         $password = $request->password;
+        $nameUser = $this->userService->getUserByUsername($username);
 
         // return view('dashboard', compact('username', 'password'));
 
         if (Auth::attempt(['email' => $request->username, 'password' => $request->password])) {
+            Session::put('username', $username);
+            Session::put('name', $nameUser->name); // Store the user object
             return redirect()->intended('/dashboard');
         } else {
             return back()->withErrors([
@@ -29,6 +39,10 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        Session::forget('username');
+        Session::forget('nameUser'); // Clear the user object from the session
         return redirect('/')->with('status', 'You have been logged out!');
     }
+
+
 }

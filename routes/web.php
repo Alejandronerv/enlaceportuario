@@ -37,6 +37,7 @@ Route::get('/register', function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // *****************************************************
 
+// DASHBOARD
 Route::get('/dashboard', [AnnouncementController::class, 'list'])->name('dashboard')->middleware('auth');
 
 
