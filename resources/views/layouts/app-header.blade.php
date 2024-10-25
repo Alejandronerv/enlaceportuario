@@ -1,6 +1,8 @@
 <?php
 
 $name = Session::get('name');
+$type = Session::get('type');
+$shipping_line = Session::get('shipping_line');
 
 ?>
 <div class="app-header header top-header">
@@ -25,7 +27,7 @@ $name = Session::get('name');
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
                         <div class="text-center">
                             <a href="#" class="dropdown-item text-center user pb-0 font-weight-bold">{{ $name }}</a>
-                            <span class="text-center user-semi-title">App Developer</span>
+                            {{-- <span class="text-center user-semi-title">{{ $shipping_line }}</span> --}}
                             <div class="dropdown-divider"></div>
                         </div>
                         <a class="dropdown-item d-flex" href="#">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -18,12 +19,14 @@ class AnnouncementController extends Controller
     //     'created_at' => 'required|date',
      ]);
 
+    $username = Session::get('username'); 
+
     $announcement = new Announcement;
     $announcement->anncsTitle = $request->input('inputTitle');
     $announcement->availableDateTime = $request->input('inputAvailableDate') . ' ' . $request->input('inputAvailableTime');
     $announcement->endDateTime = $request->input('inputEndDate'). ' ' . $request->input('inputEndTime');
     $announcement->anncsBody = $request->input('inputBody');
-    $announcement->createUser = 'test@email.com';
+    $announcement->createUser = $username;
     $announcement->save();
 
     return redirect()->route('announcements.table')->with('success', 'Data saved successfully.');

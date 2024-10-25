@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\InventoryYardFile;
 use Illuminate\Http\Request;
 //use Illuminate\Validation\Validator;
-
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -24,11 +24,12 @@ class InventoryYardFileController extends Controller
              $file = $request->file('file_name');
              $fileName = $file->getClientOriginalName();
              $filePath = $file->storeAs('uploads', $fileName, 'public');
+             $username = Session::get('username'); 
 
             $inventory_yard_file = new InventoryYardFile();
             $inventory_yard_file->file_name = $fileName;
             $inventory_yard_file->agency_code = $request->input('shipagency');
-            $inventory_yard_file->create_user = 'test@email.com';
+            $inventory_yard_file->create_user = $username;
             $inventory_yard_file->save();
 
             return redirect()->route('yardinventory.table')->with('success', 'Data saved successfully.');

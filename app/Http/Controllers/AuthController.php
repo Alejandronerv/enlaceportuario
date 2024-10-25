@@ -27,8 +27,12 @@ class AuthController extends Controller
         // return view('dashboard', compact('username', 'password'));
 
         if (Auth::attempt(['email' => $request->username, 'password' => $request->password])) {
+            // Store the user object
             Session::put('username', $username);
-            Session::put('name', $nameUser->name); // Store the user object
+            Session::put('name', $nameUser->name);
+            Session::put('type', $nameUser->type);
+            Session::put('shipping_line', $nameUser->shipping_line);
+            //////////////////////////////////////////////////////////////
             return redirect()->intended('/dashboard');
         } else {
             return back()->withErrors([
