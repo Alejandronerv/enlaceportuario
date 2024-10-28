@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Services\UserService;
@@ -35,9 +35,7 @@ class AuthController extends Controller
             //////////////////////////////////////////////////////////////
             return redirect()->intended('/dashboard');
         } else {
-            return back()->withErrors([
-                'email' => 'Wrong credential, please try again.'
-            ]);
+            return redirect('/')->with('status', 'Wrong credential, please try again.');;
         }
     }
     public function logout()
@@ -48,5 +46,23 @@ class AuthController extends Controller
         return redirect('/')->with('status', 'You have been logged out!');
     }
 
+    public function save(Request $request)
+    {
 
+        $user = new User;
+        $user->email = $request->input('userName');
+        $user->name = $request->input('yourName');
+        $user->note = $request->input('companyName');
+        $user->password = "P12345";
+        $user->status = 2; // 0 = Inactive, 1 = Admin, 2 = User
+        $user->save();
+
+        return redirect()->route('register')->with('success', 'Request sent successfully. You will receive a notification by email soon with your process status.');
+    }
+
+    public function table()
+    {
+        $users = User::all();
+        return view('users.table', compact('users'));
+    }
 }

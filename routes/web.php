@@ -95,3 +95,11 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 
     Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table');
 
+// USERS
+    // SAVE
+    Route::post('/user.save', [AuthController::class, 'save'])->name('user.save');
+
+    // ANNOUNCEMENTS LIST   
+    Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
+
+

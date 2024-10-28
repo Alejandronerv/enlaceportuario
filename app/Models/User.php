@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'type',
         'shipping_line',
+        'status',
+        'note',
     ];
 
     /**

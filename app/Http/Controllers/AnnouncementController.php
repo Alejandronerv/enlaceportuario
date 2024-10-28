@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -11,26 +12,26 @@ class AnnouncementController extends Controller
 {
     public function save(Request $request)
     {
-     $request->validate([
-           'inputTitle' => 'required|string|max:100',
-    //     'availableDateTime' => 'required|date',
-    //     'endDateTime' => 'required|date',
-    //     'createUser' => 'required|date',
-    //     'created_at' => 'required|date',
-     ]);
+        $request->validate([
+            'inputTitle' => 'required|string|max:100',
+            //     'availableDateTime' => 'required|date',
+            //     'endDateTime' => 'required|date',
+            //     'createUser' => 'required|date',
+            //     'created_at' => 'required|date',
+        ]);
 
-    $username = Session::get('username'); 
+        $username = Session::get('username');
 
-    $announcement = new Announcement;
-    $announcement->anncsTitle = $request->input('inputTitle');
-    $announcement->availableDateTime = $request->input('inputAvailableDate') . ' ' . $request->input('inputAvailableTime');
-    $announcement->endDateTime = $request->input('inputEndDate'). ' ' . $request->input('inputEndTime');
-    $announcement->anncsBody = $request->input('inputBody');
-    $announcement->createUser = $username;
-    $announcement->save();
+        $announcement = new Announcement;
+        $announcement->anncsTitle = $request->input('inputTitle');
+        $announcement->availableDateTime = $request->input('inputAvailableDate') . ' ' . $request->input('inputAvailableTime');
+        $announcement->endDateTime = $request->input('inputEndDate') . ' ' . $request->input('inputEndTime');
+        $announcement->anncsBody = $request->input('inputBody');
+        $announcement->createUser = $username;
+        $announcement->save();
 
-    return redirect()->route('announcements.table')->with('success', 'Data saved successfully.');
-}
+        return redirect()->route('announcements.table')->with('success', 'Data saved successfully.');
+    }
 
 
     public function table()
@@ -44,7 +45,7 @@ class AnnouncementController extends Controller
         $announcements = Announcement::all();
         return view('dashboard', compact('announcements'));
     }
-    
+
     public function show(Request $request)
     {
         $request->validate([
@@ -59,7 +60,4 @@ class AnnouncementController extends Controller
 
         return view('announcements.post', compact('announcement'));
     }
-
-
-
 }
