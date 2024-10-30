@@ -54,7 +54,7 @@ class AuthController extends Controller
         $user->name = $request->input('yourName');
         $user->note = $request->input('companyName');
         $user->password = "P12345";
-        $user->status = 2; // 0 = Inactive, 1 = Admin, 2 = User
+        $user->status = 2; // 0 = Inactive, 1 = Admin, 2 = New Request
         $user->save();
 
         return redirect()->route('register')->with('success', 'Request sent successfully. You will receive a notification by email soon with your process status.');
