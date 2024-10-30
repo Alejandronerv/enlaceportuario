@@ -56,6 +56,7 @@ class AuthController extends Controller
         $user->password = "P12345";
         $user->status = 2; // 0 = Inactive, 1 = Admin, 2 = New Request
         $user->save();
+        sendEmailUserNewRequest($user->name, $user->email, $user->note);
 
         return redirect()->route('register')->with('success', 'Request sent successfully. You will receive a notification by email soon with your process status.');
     }
