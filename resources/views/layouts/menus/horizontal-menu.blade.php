@@ -42,6 +42,7 @@
                         Forms <i class="fa fa-angle-down horizontal-icon"></i>
                     </a>
                     <ul class="sub-menu">
+                        <li><a href="{{ route('users.table') }}"> Users</a></li>
                         <li><a href="{{ route('announcements.table') }}"> Announcements</a></li>
                         <li><a href="{{ route('yardinventory.table') }}"> Inventory Yard File Upload</a></li>
                     </ul>

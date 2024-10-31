@@ -31,7 +31,7 @@
     <div class="card-body">
     
         <div class="table-responsive">
-            <table class="table table-bordered text-nowrap" id="example1">
+            <table class="table table-striped table-bordered text-nowrap" id="example1" style="width:100%">
                 <thead>
                     <tr>
                         <th class="wd-15p border-bottom-0">Vessel Name</th>
