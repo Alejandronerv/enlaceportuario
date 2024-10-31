@@ -32,7 +32,7 @@
 
                             <div class="table-responsive">
                                 {{-- <table class="table table-bordered text-nowrap key-buttons" id="example"> --}}
-                                <table class="table table-striped table-bordered text-nowrap key-buttons" id="example1"
+                                <table class="table table-striped table-bordered text-nowrap key-buttons" id="example"
                                     style="width:100%">
 
                                     <thead>
