@@ -31,7 +31,8 @@
                         <div class="card-body">
 
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered text-nowrap" id="example1" style="width:100%">
+                                <table class="table table-striped table-bordered text-nowrap" id="example1"
+                                    style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">Name</th>
@@ -74,9 +75,22 @@
                                                     <td><span class="badge badge-light badge-pill">Request</span></td>
                                                 @endif
 
-                                                
+
                                                 <td>{{ $user->note }}</td>
-                                                <td> </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="#" class="btn btn-light btn-sm"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Options <i
+                                                                class="fa fa-angle-down"></i></a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#"><i
+                                                                    class="fe fe-eye mr-2"></i> View</a>
+                                                            <a class="dropdown-item" href="#"><i
+                                                                    class="fe fe-trash mr-2"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
 
