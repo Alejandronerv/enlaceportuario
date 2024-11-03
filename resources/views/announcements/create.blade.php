@@ -76,7 +76,6 @@
                                 <div class="form-group mb-0 mt-4 row">
                                     <div class="col-md-9">
                                         <button type="submit" class="btn btn-primary">Create</button>
-                                        <button type="submit" class="btn btn-secondary">Cancel</button>
                                     </div>
                                 </div>
                             </form>
