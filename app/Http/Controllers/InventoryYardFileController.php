@@ -43,4 +43,10 @@ class InventoryYardFileController extends Controller
         $inventoryyardfile = InventoryYardFile::all();
         return view('yardinventory.table', compact('inventoryyardfile'));
     }
+
+    public function list()
+    {
+        $inventoryFiles = InventoryYardFile::all();
+        return view('dashboard', compact('inventoryFiles'));
+    }
 }
