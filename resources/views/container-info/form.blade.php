@@ -26,15 +26,26 @@
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-body">
+
+                            <div class="form-group mb-0 mt-4 row">
+                                <div class="col mb-2">
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i
+                                            class="fe fe-arrow-left"></i>
+                                        Back</a>
+                                </div>
+                            </div>
+
                             <form class="form-horizontal" action="{{ route('container-info.search') }}" method="post">
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="inputContainerNumber" class="col-md-3 form-label">Container Number</label>
+                                    <label for="inputContainerNumber" class="col-md-3 form-label">Container
+                                        Number</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="inputContainerNumber" name="inputContainerNumber" placeholder="Container Number" maxlength="11">
+                                        <input type="text" class="form-control" id="inputContainerNumber"
+                                            name="inputContainerNumber" placeholder="Container Number" maxlength="11">
                                     </div>
                                 </div>
-                             
+
 
                                 <div class="form-group mb-0 mt-4 row">
                                     <div class="col-md-9">
@@ -48,4 +59,4 @@
 
 
 
-@include('layouts.main-footer')
+                @include('layouts.main-footer')

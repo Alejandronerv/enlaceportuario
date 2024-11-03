@@ -38,15 +38,18 @@
                         <div class="card-body">
 
                             <div class="form-group mb-0 mt-4 row">
-                                <div class="col mb-4">
+                                <div class="col mb-2">
                                     {{-- <a href="{{ route('yardinventory.form') }}" class="btn btn-primary">+ Upload File</a> --}}
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a>
                                     <a href="{{ route('yardinventory.form') }}" class="btn btn-primary"><i
                                             class="fe fe-plus"></i> Upload New File</a>
                                 </div>
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered text-nowrap" id="example1" style="width:100%">
+                                <table class="table table-striped table-bordered text-nowrap" id="example1"
+                                    style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">File Name</th>

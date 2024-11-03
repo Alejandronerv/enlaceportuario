@@ -29,6 +29,12 @@
                     <div class="card">
 
                         <div class="card-body">
+                            <div class="form-group mb-0 mt-4 row">
+                                <div class="col mb-2">
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a>
+                                </div>
+                            </div>
 
                             <div class="table-responsive">
                                 {{-- <table class="table table-bordered text-nowrap key-buttons" id="example"> --}}

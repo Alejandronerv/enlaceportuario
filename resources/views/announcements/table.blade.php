@@ -35,14 +35,16 @@
 
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-4">
-                                    {{-- <a href="{{ route('announcements.create') }}" class="btn btn-primary">+ Add New Announcement</a> --}}
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a>
                                     <a href="{{ route('announcements.create') }}" class="btn btn-primary"><i
                                             class="fe fe-plus"></i>New Announcement</a>
                                 </div>
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered text-nowrap" id="example1" style="width:100%">
+                                <table class="table table-striped table-bordered text-nowrap" id="example1"
+                                    style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">Title</th>

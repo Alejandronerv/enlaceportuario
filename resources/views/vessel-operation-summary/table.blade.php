@@ -23,42 +23,51 @@
                 </div>
                 <!--End Page header-->
 
-{{-- DATA TABLE --}}
-@section('content')
+                {{-- DATA TABLE --}}
+                @section('content')
 
-<div class="card">
+                    <div class="card">
 
-    <div class="card-body">
-    
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered text-nowrap" id="example1" style="width:100%">
-                <thead>
-                    <tr>
-                        <th class="wd-15p border-bottom-0">Vessel Name</th>
-                        <th class="wd-15p border-bottom-0">Comm</th>
-                        <th class="wd-20p border-bottom-0">TTl</th>
-                        <th class="wd-15p border-bottom-0">Disg</th>
-                        <th class="wd-15p border-bottom-0">Load</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    @foreach($veselFields as $veselField)
-                        <tr>
-                            <td>{{ $veselField->PO_VESSEL_NAME }}</td>
-                            <td>{{ $veselField->PO_COMM_DATE_TIME }}</td>
-                            <td>{{ $veselField->PO_TTL_VALUE }}</td>
-                            <td>{{ $veselField->PO_DISG_VALUE }}</td>
-                            <td>{{ $veselField->PO_LOAD_VALUE}}</td>
-                        </tr>
-                    @endforeach
+                        <div class="card-body">
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-{{-- END DATA TABLE --}}
+                            <div class="form-group mb-0 mt-4 row">
+                                <div class="col mb-2">
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a>
+                                </div>
+                            </div>
 
 
-@include('layouts.main-footer')
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered text-nowrap" id="example1"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="wd-15p border-bottom-0">Vessel Name</th>
+                                            <th class="wd-15p border-bottom-0">Comm</th>
+                                            <th class="wd-20p border-bottom-0">TTl</th>
+                                            <th class="wd-15p border-bottom-0">Disg</th>
+                                            <th class="wd-15p border-bottom-0">Load</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($veselFields as $veselField)
+                                            <tr>
+                                                <td>{{ $veselField->PO_VESSEL_NAME }}</td>
+                                                <td>{{ $veselField->PO_COMM_DATE_TIME }}</td>
+                                                <td>{{ $veselField->PO_TTL_VALUE }}</td>
+                                                <td>{{ $veselField->PO_DISG_VALUE }}</td>
+                                                <td>{{ $veselField->PO_LOAD_VALUE }}</td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END DATA TABLE --}}
+
+
+                    @include('layouts.main-footer')
