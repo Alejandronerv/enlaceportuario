@@ -21,6 +21,15 @@
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-body">
+                            
+                            <div class="form-group mb-0 mt-4 row">
+                                <div class="col mb-2">
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a>
+                                </div>
+                            </div>
+
+
                             <form class="form-horizontal" action="{{ route('yardinventory.save') }}" method="post" enctype="multipart/form-data" >
                                 @csrf
                                 {{-- <div class="form-group"> --}}
