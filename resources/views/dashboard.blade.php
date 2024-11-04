@@ -1,7 +1,9 @@
 <?php
 
-$latestInventoryYardFile = Session::get('archivo');
-$latestDensityForeCast = Session::get('archivodf');
+//$latestInventoryYardFile = Session::get('archivo');
+
+$latestInventoryYardFile =latestRecordYardInventory();
+$latestDensityForeCast = latestDensityForecast();
 
 ?>
 @include('layouts.main-header');
@@ -46,7 +48,7 @@ $latestDensityForeCast = Session::get('archivodf');
                             <div class="card-body">
                                 <h5 class="card-title mb-3">CCT Density Forecast</h5>
                                 <p class="card-text">CCT density forecast 7 days projection.</p>
-                                <a href="{{ asset('storage/uploads/' . $latestDensityForeCast ) }}" class="btn btn-primary">Get File</a>
+                                <a href="{{ asset('storage/uploads/'. $latestDensityForeCast) }}" class="btn btn-primary">Get File</a>
                             </div>
                         </div>
                     </div>

@@ -58,28 +58,6 @@ class InventoryYardFileController extends Controller
         return view('yardinventory.list', compact('inventoryfiles'));
     }
 
-    public function latestRecord()
-    {
-        // $latestRecord = InventoryYardFile::orderBy('created_at', 'desc')->first();
-        $latestRecord = InventoryYardFile::where('file_type', 'IY')->orderBy('created_at', 'desc')->first();
-        // Assign the file_name to a variable and store it in the session
 
-        $archivo = $latestRecord->file_name;
-        Session::put('archivo', $archivo);
-
-        return view('yardinventory.latest', compact('archivo'));
-    }
-
-    public function latestRecordDF()
-    {
-        // $latestRecord = InventoryYardFile::orderBy('created_at', 'desc')->first();
-        $latestRecord = InventoryYardFile::where('file_type', 'DF')->orderBy('created_at', 'desc')->first();
-        // Assign the file_name to a variable and store it in the session
-
-        $archivodf = $latestRecord->file_name;
-        Session::put('archivodf', $archivodf);
-
-        return view('yardinventory.forecast', compact('archivodf'));
-    }
 
 }

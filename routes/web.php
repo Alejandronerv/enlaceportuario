@@ -73,10 +73,6 @@ Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])
 Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth');
 // LIST FOR DASHBOARD
 Route::get('/yardinventory.list', [InventoryYardFileController::class, 'list'])->name('yardinventory.list')->middleware('auth');
-// LATEST FILE
-Route::get('/yardinventory.latest', [InventoryYardFileController::class, 'latestRecord'])->name('yardinventory.latest')->middleware('auth');
-Route::get('/yardinventory.forecast', [InventoryYardFileController::class, 'latestRecordDF'])->name('yardinventory.forecast')->middleware('auth');
-
 
 // CONTAINER OPERATION INFORMATION***************************************************************************************
 
