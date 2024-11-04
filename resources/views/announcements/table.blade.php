@@ -35,8 +35,8 @@
 
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-4">
-                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
-                                        Back</a>
+                                    {{-- <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a> --}}
                                     <a href="{{ route('announcements.create') }}" class="btn btn-primary"><i
                                             class="fe fe-plus"></i>New Announcement</a>
                                 </div>
