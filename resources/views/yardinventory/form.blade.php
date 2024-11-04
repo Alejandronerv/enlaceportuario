@@ -21,41 +21,39 @@
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            
+
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-2">
-                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i
+                                            class="fe fe-arrow-left"></i>
                                         Back</a>
                                 </div>
                             </div>
 
 
-                            <form class="form-horizontal" action="{{ route('yardinventory.save') }}" method="post" enctype="multipart/form-data" >
+                            <form class="form-horizontal" action="{{ route('user.create') }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
-                                {{-- <div class="form-group"> --}}
-                                    {{-- <div class="form-label">File</div> --}}
-                                    {{-- <div class="form-group row"> --}}
-                                        {{-- <input type="file" name="file_name" id="file_name"> --}}
-                                        {{-- <label class="form-control">Choose file</label> --}}
-                                    {{-- </div> --}}
-                                {{-- </div> --}}
-                                
                                 <div class="input-group mb-5">
-                                    <input type="text" class="form-control browse-file" placeholder="Choose" readonly>
+                                    <input type="text" class="form-control browse-file" placeholder="Choose"
+                                        readonly>
                                     <label class="input-group-btn">
                                         <span class="btn btn-primary">
-                                            Browse <input type="file" style="display: none;" name="file_name" id="file_name">
+                                            Browse <input type="file" style="display: none;" name="file_name"
+                                                id="file_name">
                                         </span>
                                     </label>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label">Ship Agency</label>
-                                    <select name="shipagency" id="select-countries" class="form-control custom-select select2">
+                                    <select name="shipagency" id="select-countries"
+                                        class="form-control custom-select select2">
                                         <option value="UMS">UMS</option>
                                         <option value="MSK">MAERSK</option>
                                         <option value="MSC" selected>MSC</option>
                                     </select>
+                                </div>
 
                                 <div class="form-group mb-0 mt-4 row">
                                     <div class="col-md-9">
@@ -70,4 +68,4 @@
 
 
 
-@include('layouts.main-footer')
+                @include('layouts.main-footer')

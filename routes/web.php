@@ -96,9 +96,18 @@ Route::get('/container-info.table', [ApiAuthController::class, 'containerOperati
 Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table');
 
 // USERS
-// SAVE
+
+// FORM TO CREATE A NEW USER BY EXTERNAL // SAVE
 Route::post('/user.save', [AuthController::class, 'save'])->name('user.save');
+// LIST
 Route::post('/users.table', [AuthController::class, 'table'])->name('users.table');
+// FORM TO CREATE A NEW USER BY ADMIN
+Route::get('/user.form', function () {
+    return view('users.form');
+})->name('user.form')->middleware('auth');
+// SAVE NEW USER FROM ADMIN
+Route::post('/user.create', [AuthController::class, 'create'])->name('user.create')->middleware('auth');;
+
 
 // ANNOUNCEMENTS LIST   
 Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');

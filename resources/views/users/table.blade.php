@@ -28,14 +28,31 @@
 
                     <div class="card">
 
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert"><button type="button" class="close"
+                                    data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger" role="alert"><button type="button" class="close"
+                                    data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                         <div class="card-body">
                             <div class="form-group mb-0 mt-4 row">
 
                                 <div class="col mb-2">
-                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i
+                                            class="fe fe-arrow-left"></i>
                                         Dashboard</a>
-                                    <a href="#" class="btn btn-primary"><i
-                                            class="fe fe-plus"></i> New User</a>
+                                    <a href="{{ route('user.form') }}" class="btn btn-primary"><i class="fe fe-plus"></i>
+                                        New User</a>
                                 </div>
                             </div>
 

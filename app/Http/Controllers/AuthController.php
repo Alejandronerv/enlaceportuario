@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 use App\Services\UserService;
 
 class AuthController extends Controller
@@ -59,6 +60,31 @@ class AuthController extends Controller
         sendEmailUserNewRequest($user->name, $user->email, $user->note);
 
         return redirect()->route('register')->with('success', 'Request sent successfully. You will receive a notification by email soon with your process status.');
+    }
+
+    // SAVE NEW USER FROM ADMIN USER
+    public function create(Request $request)
+    {
+        try {
+            $user = new User;
+            $user->name = $request->input('inputName');
+            $user->email = $request->input('inputEmail');
+            $user->password = $request->input('inputPassword');
+            $user->shipping_line = $request->input('shipagency');
+            $user->type = $request->input('role');
+            $user->note = $request->input('inputNote');
+            $user->status = 1; // 0 = Inactive, 1 = Active, 2 = New Request
+            $user->save();
+            //sendEmailUserNewRequest($user->name, $user->email, $user->note);
+
+            return redirect()->route('users.table')->with('success', 'New user account created.');
+        } catch (\Exception $e) {
+            // Captura cualquier excepción que ocurra
+            Log::error($e); // Registra el error en los logs
+
+            // Redirige hacia atrás con un mensaje de error
+            return redirect()->route('users.table')->with('error', 'There was an error saving the user. Please try again.');
+        }
     }
 
     public function table()
