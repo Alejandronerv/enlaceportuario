@@ -69,7 +69,6 @@
                                                 <td>{{ $yardinventory->created_at }}</td>
                                                 <td>{{ $yardinventory->agency_code }}</td>
                                                 <td>{{ $yardinventory->create_user }}</td>
-                                                <td>{{ $yardinventory->file_type }}</td>
                                                 
                                                 @if ($yardinventory->file_type == 'IY')
                                                     <td><span class="badge badge-primary badge-pill">Inventory Yard</span>
