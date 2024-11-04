@@ -23,53 +23,57 @@
                 </div>
                 <!--End Page header-->
 
-{{-- DATA TABLE --}}
-@section('content')
+                {{-- DATA TABLE --}}
+                @section('content')
 
-<div class="card">
+                    <div class="card">
 
-    <div class="card-body">
+                        <div class="card-body">
 
-        <div class="form-group mb-0 mt-4 row">
-            <div class="col mb-2">
-                <a href="{{ route('dashboard') }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
-                    Back</a>
-            </div>
-        </div>
-    
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered text-nowrap" id="example1" style="width:100%">
-                <thead>
-                    <tr>
-                        <th class="wd-15p border-bottom-0">Vessel Name</th>
-                        <th class="wd-15p border-bottom-0">Type</th>
-                        <th class="wd-20p border-bottom-0">Shipping Line</th>
-                        <th class="wd-15p border-bottom-0">Arr Date</th>
-                        <th class="wd-15p border-bottom-0">Arr Time</th>
-                        <th class="wd-15p border-bottom-0">Dep Date</th>
-                        <th class="wd-15p border-bottom-0">Dep Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    @foreach($containerFields as $containerField)
-                        <tr>
-                            <td>{{ $containerField->PO_VESSEL_NAME }}</td>
-                            <td>{{ $containerField->PO_TYPE }}</td>
-                            <td>{{ $containerField->PO_SHIPPING_LINE }}</td>
-                            <td>{{ $containerField->PO_ARR_DATE }}</td>
-                            <td>{{ $containerField->PO_ARR_TIME }}</td>
-                            <td>{{ $containerField->PO_DEP_DATE }}</td>
-                            <td>{{ $containerField->PO_DEP_TIME }}</td>
-                        </tr>
-                    @endforeach
+                            <div class="form-group mb-0 mt-4 row">
+                                <div class="col mb-2">
+                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i
+                                            class="fe fe-arrow-left"></i>
+                                        Dashboard</a>
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a>
+                                </div>
+                            </div>
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-{{-- END DATA TABLE --}}
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered text-nowrap" id="example1"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="wd-15p border-bottom-0">Vessel Name</th>
+                                            <th class="wd-15p border-bottom-0">Type</th>
+                                            <th class="wd-20p border-bottom-0">Shipping Line</th>
+                                            <th class="wd-15p border-bottom-0">Arr Date</th>
+                                            <th class="wd-15p border-bottom-0">Arr Time</th>
+                                            <th class="wd-15p border-bottom-0">Dep Date</th>
+                                            <th class="wd-15p border-bottom-0">Dep Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($containerFields as $containerField)
+                                            <tr>
+                                                <td>{{ $containerField->PO_VESSEL_NAME }}</td>
+                                                <td>{{ $containerField->PO_TYPE }}</td>
+                                                <td>{{ $containerField->PO_SHIPPING_LINE }}</td>
+                                                <td>{{ $containerField->PO_ARR_DATE }}</td>
+                                                <td>{{ $containerField->PO_ARR_TIME }}</td>
+                                                <td>{{ $containerField->PO_DEP_DATE }}</td>
+                                                <td>{{ $containerField->PO_DEP_TIME }}</td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END DATA TABLE --}}
 
 
-@include('layouts.main-footer')
+                    @include('layouts.main-footer')

@@ -32,7 +32,7 @@
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-2">
                                     <a href="{{ route('dashboard') }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
-                                        Back</a>
+                                        Dashboard</a>
                                 </div>
                             </div>
 
