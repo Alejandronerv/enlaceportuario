@@ -45,57 +45,55 @@ Route::get('/dashboard', [AnnouncementController::class, 'list'])->name('dashboa
 Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
 
 // API RESTFUL
-Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
-Route::get('/autorizo', [ApiAuthController::class, 'apiAuth'])->name('autorizo');
+// Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
+// Route::get('/autorizo', [ApiAuthController::class, 'apiAuth'])->name('autorizo');
 Route::get('/berth.table', [ApiAuthController::class, 'operationBerth'])->name('berth.table');
 
-// ANNOUNCEMENTS
-
+// ANNOUNCEMENTS*********************************************************************************************************
 //  FORM
 Route::get('/announcements.create', function () {
     return view('announcements.create');
 })->name('announcements.create')->middleware('auth');
-
 // SAVE
 Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save')->middleware('auth');;
-
 // ANNOUNCEMENTS LIST   
 Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('auth');;
-
-
 // SINGLE POST
 Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post')->middleware('auth');;
 
 
-// INVENTORY YARD
+// INVENTORY YARD*********************************************************************************************************
 //  FORM
 Route::get('/yardinventory.form', function () {
     return view('yardinventory.form');
 })->name('yardinventory.form')->middleware('auth');;
-
 // SAVE
-Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save')->middleware('auth');;
-
+Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save')->middleware('auth');
 // LIST   
-Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth');;
+Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth');
+// LIST FOR DASHBOARD
+Route::get('/yardinventory.list', [InventoryYardFileController::class, 'list'])->name('yardinventory.list')->middleware('auth');
+// LATEST FILE
+Route::get('/yardinventory.latest', [InventoryYardFileController::class, 'latestRecord'])->name('yardinventory.latest')->middleware('auth');
+Route::get('/yardinventory.forecast', [InventoryYardFileController::class, 'latestRecordDF'])->name('yardinventory.forecast')->middleware('auth');
 
-// CONTAINER OPERATION INFORMATION
 
-//  SEARCH FORM
+// CONTAINER OPERATION INFORMATION***************************************************************************************
+
+//  SEARCH FORM API RESTFUL
 Route::get('/container-info.form', function () {
     return view('container-info.form');
 })->name('container-info.form');
 
-Route::post('/container-info.search', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.search');
+Route::post('/container-info.search', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.search')->middleware('auth');
 
 
-Route::get('/container-info.table', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.table');
+Route::get('/container-info.table', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.table')->middleware('auth');
 
 // VESSEL OPERATION SUMMARY
+Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table')->middleware('auth');
 
-Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table');
-
-// USERS
+// USERS**************************************************************************************************************
 
 // FORM TO CREATE A NEW USER BY EXTERNAL // SAVE
 Route::post('/user.save', [AuthController::class, 'save'])->name('user.save');

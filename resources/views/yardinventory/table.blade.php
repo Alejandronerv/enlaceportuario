@@ -18,7 +18,7 @@
                 <!--Page header-->
                 <div class="page-header">
                     <div class="page-leftheader">
-                        <h4 class="page-title">Daily In Yard Utilization Files</h4>
+                        <h4 class="page-title">Upload Files</h4>
                     </div>
                 </div>
                 <!--End Page header-->
@@ -39,7 +39,8 @@
 
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-2">
-                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i
+                                            class="fe fe-arrow-left"></i>
                                         Dashboard</a>
                                     <a href="{{ route('yardinventory.form') }}" class="btn btn-primary"><i
                                             class="fe fe-plus"></i> Upload New File</a>
@@ -55,6 +56,7 @@
                                             <th class="wd-15p border-bottom-0">Created At</th>
                                             <th class="wd-20p border-bottom-0">Agency</th>
                                             <th class="wd-15p border-bottom-0">Upload by</th>
+                                            <th class="wd-15p border-bottom-0">Type</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,6 +69,18 @@
                                                 <td>{{ $yardinventory->created_at }}</td>
                                                 <td>{{ $yardinventory->agency_code }}</td>
                                                 <td>{{ $yardinventory->create_user }}</td>
+                                                <td>{{ $yardinventory->file_type }}</td>
+                                                
+                                                @if ($yardinventory->file_type == 'IY')
+                                                    <td><span class="badge badge-primary badge-pill">Inventory Yard</span>
+                                                    </td>
+                                                @elseif ($yardinventory->file_type == 'DF')
+                                                    <td><span class="badge badge-info badge-pill">CCT Density
+                                                            Forecast</span></td>
+                                                @else
+                                                    <td><span class="badge badge-warning badge-pill">Unknown</span></td>
+                                                @endif
+
                                             </tr>
                                         @endforeach
 

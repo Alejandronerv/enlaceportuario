@@ -1,42 +1,60 @@
 @include('layouts.main-header')
 @section('content')
-<div class="page">
-    <div class="page-main">
+    <div class="page">
+        <div class="page-main">
 
-        <!--app header-->
-        @include('layouts.app-header')
-        <!--/app header-->
+            <!--app header-->
+            @include('layouts.app-header')
+            <!--/app header-->
 
 
-        <!-- Horizontal-menu -->
-        @include('layouts.menus.horizontal-menu')
-        <!-- Horizontal-menu end -->
+            <!-- Horizontal-menu -->
+            @include('layouts.menus.horizontal-menu')
+            <!-- Horizontal-menu end -->
 
-        <div class="app-content page-body">
-            <div class="container">
+            <div class="app-content page-body">
+                <div class="container">
 
-                <!--Page header-->
-                @include('layouts.headers.page-header')
-                <!--End Page header-->
-		<!-- Row -->
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12">
-                <div class="card overflow-hidden">
-           
-                    <div class="card-body">
-                        <div class="item7-card-desc d-md-flex mb-5">
-                            <a class="d-flex mr-3 mb-2"><svg class="svg-icon mr-2" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z"/><path d="M4 5.01h16V8H4z" opacity=".3"/></svg><div class="mt-0">{{ $announcement->availableDateTime }}</div></a>
-                        </div>
-                        <a class="mt-4"><h5 class="font-weight-semibold">{{ $announcement->anncsTitle }}</h5></a>
-                        {!! $announcement->anncsBody !!}
-                        <div class="media py-3 mt-0 border-top">
+                    <!--Page header-->
+                    @include('layouts.headers.page-header')
+                    <!--End Page header-->
+                    <!-- Row -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="card overflow-hidden">
 
-                        </div>
-                    </div>
-                </div>
+                                <div class="card-body">
+                                    <div class="form-group mb-0 mt-4 row">
+                                        <div class="col mb-2">
+                                            <a href="{{ url()->previous() }}" class="btn btn-light"><i
+                                                    class="fe fe-arrow-left"></i>
+                                                Back</a>
+                                        </div>
+                                    </div>
+                                    <div class="item7-card-desc d-md-flex mb-5">
+                                        <a class="d-flex mr-3 mb-2"><svg class="svg-icon mr-2"
+                                                xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24"
+                                                width="18">
+                                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                                <path
+                                                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z" />
+                                                <path d="M4 5.01h16V8H4z" opacity=".3" />
+                                            </svg>
+                                            <div class="mt-0">{{ $announcement->availableDateTime }}</div>
+                                        </a>
+                                    </div>
+                                    <a class="mt-4">
+                                        <h5 class="font-weight-semibold">{{ $announcement->anncsTitle }}</h5>
+                                    </a>
+                                    {!! $announcement->anncsBody !!}
+                                    <div class="media py-3 mt-0 border-top">
 
-                <!--Comments-->
-                {{-- <div class="card">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Comments-->
+                            {{-- <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">3 Comments</h3>
                     </div>
@@ -101,9 +119,9 @@
                         </div>
                     </div>
                 </div> --}}
-                <!--/Comments-->
+                            <!--/Comments-->
 
-                {{-- <div class="card ">
+                            {{-- <div class="card ">
                     <div class="card-header">
                         <h3 class="card-title">Add a Comment</h3>
                     </div>
@@ -122,8 +140,8 @@
                         </div>
                     </div>
                 </div> --}}
-            </div>
-        </div>
-        <!--End Row-->
+                        </div>
+                    </div>
+                    <!--End Row-->
 
-                @include('layouts.main-footer')
+                    @include('layouts.main-footer')

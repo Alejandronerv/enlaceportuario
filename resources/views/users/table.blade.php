@@ -95,9 +95,9 @@
                                                 {{-- 0 = Inactive, 1 = Active, 2 = New Request --}}
                                                 @if ($user->status == 0)
                                                     <td><span class="badge badge-secondary badge-pill">Inactive</span></td>
-                                                @elseif ($user->type == 1)
+                                                @elseif ($user->status == 1)
                                                     <td><span class="badge badge-success badge-pill">Active</span></td>
-                                                @elseif ($user->type == 2)
+                                                @elseif ($user->status == 2)
                                                     <td><span class="badge badge-light badge-pill">Request</span></td>
                                                 @endif
 

@@ -31,7 +31,7 @@
                             </div>
 
 
-                            <form class="form-horizontal" action="{{ route('user.create') }}" method="post"
+                            <form class="form-horizontal" action="{{ route('yardinventory.save') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="input-group mb-5">
@@ -52,6 +52,15 @@
                                         <option value="UMS">UMS</option>
                                         <option value="MSK">MAERSK</option>
                                         <option value="MSC" selected>MSC</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Type</label>
+                                    <select name="filetype" id="select-countries"
+                                        class="form-control custom-select select2">
+                                        <option value="IY">Inventory Yard</option>
+                                        <option value="DF">CCT Density Forecast</option>
                                     </select>
                                 </div>
 

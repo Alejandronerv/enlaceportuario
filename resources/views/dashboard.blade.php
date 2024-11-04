@@ -1,5 +1,10 @@
-@include('layouts.main-header')
+<?php
 
+$latestInventoryYardFile = Session::get('archivo');
+$latestDensityForeCast = Session::get('archivodf');
+
+?>
+@include('layouts.main-header');
 <div class="page">
     <div class="page-main">
 
@@ -23,9 +28,30 @@
                 </div>
                 <!--End Page header-->
 
-                <!-- Inventory Yard List -->
-                {{-- @include('yardinventory.list') --}}
-                <!--Inventory Yard End List-->
+                <!-- Inventory Yard Files Link -->
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card overflow-hidden">
+                            <img src="{{ asset('images/photos/yard-inventory.jpg') }}" alt="image">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">Inventory Yard</h5>
+                                <p class="card-text">Obtain the newest inventory yard data file.</p>
+                                <a href="{{ asset('storage/uploads/' . $latestInventoryYardFile) }}" class="btn btn-primary">Get File</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card overflow-hidden">
+                            <img src="{{ asset('images/photos/forecast.jpg') }}" alt="image">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">CCT Density Forecast</h5>
+                                <p class="card-text">CCT density forecast 7 days projection.</p>
+                                <a href="{{ asset('storage/uploads/' . $latestDensityForeCast ) }}" class="btn btn-primary">Get File</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End-->
 
                 <!-- Announcements List -->
                 @include('announcements.list')

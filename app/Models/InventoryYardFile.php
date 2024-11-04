@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class InventoryYardFile extends Model
 {
     use HasFactory;
-    protected $fillable = ['file_name','file_path', 'agency_code', 'create_user'];
+    protected $fillable = ['file_name','file_type', 'agency_code', 'create_user', 'create_at', 'updated_at'];
 }
+    
