@@ -2,10 +2,23 @@
 
 use Mailgun\Mailgun;
 use App\Models\InventoryYardFile;
+use Illuminate\Support\Str;
+
 
 function generateRandomFourDigitNumber()
 {
     return rand(1000, 9999);
+}
+
+function generateRandomPassword($length = 8)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }
 
 function sendEmailUserNewRequest($name, $email, $company)
@@ -30,6 +43,30 @@ function sendEmailUserNewRequest($name, $email, $company)
 
     return $response;
 }
+
+function sendEmailUserResetPassword($nameLastName,$newPassword,$userEmail)
+{
+    $domain = env('MAILGUN_DOMAIN');
+    $apiKey = env('MAILGUN_SECRET');
+
+    // Initialize the Mailgun client
+    $mgClient = Mailgun::create($apiKey);
+
+    // Define the email parameters
+    $params = [
+        'from'    => "CCTlink Notifications <notifications@{$domain}>",
+        'to'      => $userEmail,
+        'subject' => 'CCTlink - New Password Request',
+        'template' => 'reset_password_user',
+        'h:X-Mailgun-Variables' => json_encode(['userNameLastName' => $nameLastName, 'newPassword' => $newPassword]),
+    ];
+
+    // Send the email
+    $response = $mgClient->messages()->send($domain, $params);
+
+    return $response;
+}
+
 
 function latestRecordYardInventory()
 {

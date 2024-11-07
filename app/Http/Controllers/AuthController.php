@@ -92,4 +92,35 @@ class AuthController extends Controller
         $users = User::all();
         return view('users.table', compact('users'));
     }
+
+    // Update user password
+    public function updatePassword(Request $request)
+    {
+        //    $request->validate([
+        //        'email' => 'required|email|exists:users,email',
+        //        'password' => 'required|string|min:8|confirmed',
+        //    ]);
+
+        $userEmail = $request->input('email');
+        try {
+            $user = User::where('email', $userEmail)->first();
+            if ($user) {
+                
+                $newPassword = generateRandomPassword();
+                $nameLastName = $user->name;
+
+                sendEmailUserResetPassword($nameLastName, $newPassword, $userEmail);
+
+                $user->password = $newPassword;
+                $user->save();
+
+                return redirect()->route('users.table')->with('success', 'User password reset successfully. An email with the new password has been sent to the user.');
+            } else {
+                return redirect()->route('users.table')->with('error', 'User not found.');
+            }
+        } catch (\Exception $e) {
+            Log::error($e); // Log the error
+            return redirect()->route('users.table')->with('error', 'There was an error updating the password. Please try again.');
+        }
+    }
 }

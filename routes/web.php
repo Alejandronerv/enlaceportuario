@@ -101,6 +101,8 @@ Route::get('/user.form', function () {
 })->name('user.form')->middleware('auth');
 // SAVE NEW USER FROM ADMIN
 Route::post('/user.create', [AuthController::class, 'create'])->name('user.create')->middleware('auth');;
+// USER RESET PASSWORD
+Route::get('/user.reset.password', [AuthController::class, 'updatePassword'])->name('user.reset.password');
 
 
 // ANNOUNCEMENTS LIST   

@@ -61,6 +61,7 @@
                                     style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th class="wd-15p border-bottom-0">Action</th>
                                             <th class="wd-15p border-bottom-0">Name</th>
                                             <th class="wd-15p border-bottom-0">email (Username)</th>
                                             <th class="wd-20p border-bottom-0">Created At</th>
@@ -69,13 +70,29 @@
                                             <th class="wd-15p border-bottom-0">Shipping Line</th>
                                             <th class="wd-15p border-bottom-0">Status</th>
                                             <th class="wd-15p border-bottom-0">Notes</th>
-                                            <th class="wd-15p border-bottom-0">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         @foreach ($users as $user)
                                             <tr>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="#" class="btn btn-light btn-sm"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Options <i
+                                                                class="fa fa-angle-down"></i></a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#"><i
+                                                                    class="fe fe-eye mr-2"></i> View</a>
+                                                            <a class="dropdown-item" href="{{ route('user.reset.password', ['email' => $user->email]) }}"><i
+                                                                    class="fe fe-refresh-ccw mr-2"></i> Reset Password</a>
+                                                            <a class="dropdown-item" href="#"><i
+                                                                    class="fe fe-trash mr-2"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->created_at }}</td>
@@ -103,20 +120,7 @@
 
 
                                                 <td>{{ $user->note }}</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <a href="#" class="btn btn-light btn-sm"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">Options <i
-                                                                class="fa fa-angle-down"></i></a>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fe fe-eye mr-2"></i> View</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fe fe-trash mr-2"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
+
                                             </tr>
                                         @endforeach
 
