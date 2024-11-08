@@ -105,7 +105,7 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $userEmail)->first();
             if ($user) {
-                
+
                 $newPassword = generateRandomPassword();
                 $nameLastName = $user->name;
 
@@ -121,6 +121,26 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             Log::error($e); // Log the error
             return redirect()->route('users.table')->with('error', 'There was an error updating the password. Please try again.');
+        }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $newPassword = $request->input('newPassword');
+        $newPasswordRepeat = $request->input('newPasswordRepeat');
+
+        if ($newPassword !== $newPasswordRepeat) {
+            return redirect()->route('user.profile')->with('error', 'New password and repeat password do not match.');
+        }
+
+        $user = User::where('email', Session::get('username'))->first();
+
+        if ($user) {
+            $user->password = $request->input('newPassword');
+            $user->save();
+            return redirect()->route('user.profile')->with('success', 'Password updated successfully.');
+        } else {
+            return redirect()->route('user.profile')->with('error', 'User not found.');
         }
     }
 }

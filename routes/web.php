@@ -103,7 +103,12 @@ Route::get('/user.form', function () {
 Route::post('/user.create', [AuthController::class, 'create'])->name('user.create')->middleware('auth');;
 // USER RESET PASSWORD
 Route::get('/user.reset.password', [AuthController::class, 'updatePassword'])->name('user.reset.password');
+// EDIT PROFILE
+Route::get('/user.profile', function () {
+    return view('users.profile');
+})->name('user.profile')->middleware('auth');
 
+Route::post('/user.update.password', [AuthController::class, 'updateProfile'])->name('user.update.password')->middleware('auth');
 
 // ANNOUNCEMENTS LIST   
 Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
