@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,7 @@ class ApiAuthController extends Controller
         $api_host = env('API_HOST');
 
 
-        $response = $client->post($api_host.'/auth', [
+        $response = $client->post($api_host . '/auth', [
             'form_params' => [
                 'username' => env('API_USERNAME'),
                 'password' => env('API_PASSWORD')
@@ -27,7 +28,7 @@ class ApiAuthController extends Controller
         // Manejar la respuesta
         if ($response->getStatusCode() === 200) {
             // Handle successful authentication
-            $body = $response->getBody();                            
+            $body = $response->getBody();
             $data = json_decode($body, true);
             // return response()->json($data);
             $accessToken = $data['access_token'] ?? null;
@@ -36,30 +37,33 @@ class ApiAuthController extends Controller
             // Handle authentication error
             return response()->json(['error' => 'Authentication failed'], $response->getStatusCode());
         }
-       
     }
 
     public function operationBerth()
     {
         $client = new Client();
         $api_host = env('API_HOST');
-         // Retrieve tokens from session
-         $accessToken = Session::get('accessToken');
+        // Retrieve tokens from session
+        $accessToken = Session::get('accessToken');
 
-         $currentDate = Carbon::now();
-         $formattedDate = $currentDate->format('Ymd');
+        $currentDate = Carbon::now();
+        $formattedDate = $currentDate->format('Ymd');
 
-        $response = $client->request('GET', $api_host.'/api/ver1/OperationBerth/20140101/20140630', [
+        $response = $client->request('GET', $api_host . '/api/ver1/OperationBerth/20140101/20140630', [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,
             ],
         ]);
 
-        $data = json_decode($response->getBody()->getContents());
-        $berthFields = $data; // Assuming $data contains the fields needed for the view
-        return view('berth.table', compact('berthFields'));
-        // return $data;
+        if ($response->getStatusCode() === 200) {
+            $data = json_decode($response->getBody()->getContents());
+            $berthFields = $data; // Assuming $data contains the fields needed for the view
+            return view('berth.table', compact('berthFields'));
+        } else {
+            // Handle authentication error
+            return response()->json(['error' => 'No Data Found'], $response->getStatusCode());
+        }
     }
 
     public function containerOperationInformation(Request $request)
@@ -67,40 +71,46 @@ class ApiAuthController extends Controller
         $client = new Client();
         $api_host = env('API_HOST');
         $containerNumber = $request->input('inputContainerNumber');
-         // Retrieve tokens from session
-         $accessToken = Session::get('accessToken');
+        // Retrieve tokens from session
+        $accessToken = Session::get('accessToken');
 
-        $response = $client->request('GET', $api_host.'/api/ver1/CntrOperationInformation/'.$containerNumber, [
+        $response = $client->request('GET', $api_host . '/api/ver1/CntrOperationInformation/' . $containerNumber, [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,
             ],
         ]);
-
-        $data = json_decode($response->getBody()->getContents());
-        $containerFields = $data; // Assuming $data contains the fields needed for the view
-        return view('container-info.table', compact('containerFields'));
-        // return $data;
+        if ($response->getStatusCode() === 200) {
+            $data = json_decode($response->getBody()->getContents());
+            $containerFields = $data; // Assuming $data contains the fields needed for the view
+            return view('container-info.table', compact('containerFields'));
+        } else {
+            // Handle authentication error
+            return response()->json(['error' => 'No Data Found'], $response->getStatusCode());
+        }
     }
 
     public function vesselOperationSummary()
     {
         $client = new Client();
         $api_host = env('API_HOST');
-         // Retrieve tokens from session
-         $accessToken = Session::get('accessToken');
+        // Retrieve tokens from session
+        $accessToken = Session::get('accessToken');
 
-        $response = $client->request('GET', $api_host.'/api/ver1/VesselOperationSummary/EMC', [
+        $response = $client->request('GET', $api_host . '/api/ver1/VesselOperationSummary/EMC', [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,
             ],
         ]);
 
-        $data = json_decode($response->getBody()->getContents());
-        $veselFields = $data; // Assuming $data contains the fields needed for the view
-        return view('vessel-operation-summary.table', compact('veselFields'));
-        // return $data;
+        if ($response->getStatusCode() === 200) {
+            $data = json_decode($response->getBody()->getContents());
+            $veselFields = $data; // Assuming $data contains the fields needed for the view
+            return view('vessel-operation-summary.table', compact('veselFields'));
+        } else {
+            // Handle authentication error
+            return response()->json(['error' => 'No Data Found'], $response->getStatusCode());
+        }
     }
-
 }

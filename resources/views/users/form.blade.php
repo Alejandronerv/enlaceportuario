@@ -39,21 +39,21 @@
                                     <label for="inputTitle" class="col-md-3 form-label">Name</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" id="inputName" name="inputName"
-                                            placeholder="Name">
+                                            placeholder="Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-md-3 form-label">email</label>
                                     <div class="col-md-9">
                                         <input type="email" class="form-control" id="inputEmail" name="inputEmail"
-                                            placeholder="email">
+                                            placeholder="email" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-md-3 form-label">Password</label>
                                     <div class="col-md-9">
                                         <input type="password" class="form-control" id="inputPassword"
-                                            name="inputPassword" placeholder="Password">
+                                            name="inputPassword" placeholder="Password" required>
                                     </div>
                                 </div>
 

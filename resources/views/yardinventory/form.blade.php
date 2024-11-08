@@ -40,7 +40,7 @@
                                     <label class="input-group-btn">
                                         <span class="btn btn-primary">
                                             Browse <input type="file" style="display: none;" name="file_name"
-                                                id="file_name">
+                                                id="file_name" required>
                                         </span>
                                     </label>
                                 </div>

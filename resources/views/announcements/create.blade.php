@@ -35,31 +35,31 @@
                                 <div class="form-group row">
                                     <label for="inputTitle" class="col-md-3 form-label">Title</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Announcement Title">
+                                        <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Announcement Title" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputAvailableDate" class="col-md-3 form-label">Available Date</label>
                                     <div class="col-md-9">
-                                        <input type="date" class="form-control" id="inputAvailableDate" name="inputAvailableDate" placeholder="Available Date">
+                                        <input type="date" class="form-control" id="inputAvailableDate" name="inputAvailableDate" placeholder="Available Date" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputAvailableTime" class="col-md-3 form-label">Available Time</label>
                                     <div class="col-md-9">
-                                        <input type="time" class="form-control" id="inputAvailableTime" name="inputAvailableTime" placeholder="Available Date">
+                                        <input type="time" class="form-control" id="inputAvailableTime" name="inputAvailableTime" placeholder="Available Date" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEndDate" class="col-md-3 form-label">End Date</label>
                                     <div class="col-md-9">
-                                        <input type="date" class="form-control" id="inputEndDate" name="inputEndDate" placeholder="End Date">
+                                        <input type="date" class="form-control" id="inputEndDate" name="inputEndDate" placeholder="End Date" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEndTime" class="col-md-3 form-label">End Time</label>
                                     <div class="col-md-9">
-                                        <input type="time" class="form-control" id="inputEndTime" name="inputEndTime" placeholder="End Date">
+                                        <input type="time" class="form-control" id="inputEndTime" name="inputEndTime" placeholder="End Date" required>
                                     </div>
                                 </div>
 
@@ -67,7 +67,7 @@
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <textarea class="content" name="inputBody"></textarea>
+                                                <textarea class="content" name="inputBody" required></textarea>
                                             </div>
                                         </div>
                                     </div>
