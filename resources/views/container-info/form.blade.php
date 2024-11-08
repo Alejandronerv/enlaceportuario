@@ -42,7 +42,7 @@
                                         Number</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" id="inputContainerNumber"
-                                            name="inputContainerNumber" placeholder="Container Number" maxlength="11">
+                                            name="inputContainerNumber" placeholder="Container Number" maxlength="11" required>
                                     </div>
                                 </div>
 
