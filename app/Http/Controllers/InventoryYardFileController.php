@@ -58,6 +58,27 @@ class InventoryYardFileController extends Controller
         return view('yardinventory.list', compact('inventoryfiles'));
     }
 
+    public function listInventoryYard()
+    {
+        // $listinventoryyardfiles = InventoryYardFile::all();
+        
+        $agencyCode = Session::get('shipping_line');
 
+        $listinventoryyardfiles = InventoryYardFile::where('file_type', 'IY')
+        ->where('agency_code', $agencyCode)
+        ->get();
+        return view('yardinventory.list-inventory-yard', compact('listinventoryyardfiles'));
+    }
 
+    public function listDensityForecast()
+    {
+        // $listinventoryyardfiles = InventoryYardFile::all();
+        
+        $agencyCode = Session::get('shipping_line');
+
+        $listdensityforecastfiles = InventoryYardFile::where('file_type', 'DF')
+        ->where('agency_code', $agencyCode)
+        ->get();
+        return view('yardinventory.list-density-forecast', compact('listdensityforecastfiles'));
+    }
 }

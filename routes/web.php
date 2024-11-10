@@ -63,14 +63,20 @@ Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name
 
 
 // INVENTORY YARD*********************************************************************************************************
+
 //  FORM
 Route::get('/yardinventory.form', function () {
     return view('yardinventory.form');
 })->name('yardinventory.form')->middleware('auth');;
+
 // SAVE
 Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save')->middleware('auth');
+
 // LIST   
 Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth');
+Route::get('/yardinventory.list-inventory-yard', [InventoryYardFileController::class, 'listInventoryYard'])->name('yardinventory.list-inventory-yard')->middleware('auth');
+Route::get('/yardinventory.list-density-forecast', [InventoryYardFileController::class, 'listDensityForecast'])->name('yardinventory.list-density-forecast')->middleware('auth');
+
 // LIST FOR DASHBOARD
 Route::get('/yardinventory.list', [InventoryYardFileController::class, 'list'])->name('yardinventory.list')->middleware('auth');
 
