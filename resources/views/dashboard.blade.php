@@ -54,6 +54,17 @@ $latestDensityForeCast = latestDensityForecast();
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card overflow-hidden">
+                            <img src="{{ asset('images/photos/berth.jpg') }}" alt="image">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">Operation Berth</h5>
+                                <p class="card-text">Berth Operation Schedule.</p>
+                                {{-- <a href="{{ asset('storage/uploads/'. $latestDensityForeCast) }}" class="btn btn-primary"><i class="fe fe-download mr-2"></i>Get Latest</a> --}}
+                                <a href="{{ route('berth.table') }}" class="btn btn-primary"><i class="fe fe-anchor mr-2"></i>View Berth</a>    
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!--End-->
 
