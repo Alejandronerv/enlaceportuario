@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use Carbon\Carbon;
 
 
 class AnnouncementController extends Controller
@@ -42,7 +42,12 @@ class AnnouncementController extends Controller
 
     public function list()
     {
-        $announcements = Announcement::all();
+
+        $currentDate = Carbon::now();
+
+        $announcements = Announcement::where('availableDateTime', '<=', $currentDate)
+            ->where('endDateTime', '>=', $currentDate)
+            ->get();
         return view('dashboard', compact('announcements'));
     }
 
