@@ -118,3 +118,8 @@ Route::post('/user.update.password', [AuthController::class, 'updateProfile'])->
 
 // ANNOUNCEMENTS LIST   
 Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
+
+// ERRORS
+Route::get('{any}', function () {
+    return view('errors.404');
+})->where('any', '.*');
