@@ -119,7 +119,18 @@ Route::post('/user.update.password', [AuthController::class, 'updateProfile'])->
 // ANNOUNCEMENTS LIST   
 Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
 
+// ANNOUNCEMENT DELETE
+Route::get('/announcement.delete', [AnnouncementController::class, 'delete'])->name('announcement.delete')->middleware('auth');
+
+// CHARTS
+Route::get('/estadisticas.sample', function () {
+    return view('estadisticas.sample');
+})->name('estadisticas.sample');
+
+
 // ERRORS
 Route::get('{any}', function () {
     return view('errors.404');
 })->where('any', '.*');
+
+

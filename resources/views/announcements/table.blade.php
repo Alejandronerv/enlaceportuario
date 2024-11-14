@@ -31,11 +31,20 @@
                             </div>
                         @endif
 
+                        @if (session('error'))
+                            <div class="alert alert-danger" role="alert"><button type="button" class="close"
+                                    data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                         <div class="card-body">
 
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-4">
-                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i
+                                            class="fe fe-arrow-left"></i>
                                         Dashboard</a>
                                     <a href="{{ route('announcements.create') }}" class="btn btn-primary"><i
                                             class="fe fe-plus"></i>New Announcement</a>
@@ -47,6 +56,7 @@
                                     style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th class="wd-15p border-bottom-0">Action</th>
                                             <th class="wd-15p border-bottom-0">Title</th>
                                             <th class="wd-15p border-bottom-0">Available Date</th>
                                             <th class="wd-20p border-bottom-0">End Date</th>
@@ -57,6 +67,24 @@
 
                                         @foreach ($announcements as $announcement)
                                             <tr>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="#" class="btn btn-light btn-sm"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Options <i
+                                                                class="fa fa-angle-down"></i></a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('announcements.post', ['anncsID' => $announcement->anncsID]) }}"><i
+                                                                    class="fe fe-eye mr-2"></i> View</a>
+                                                            <a class="dropdown-item" href="# }}"><i
+                                                                    class="fe fe-refresh-ccw mr-2"></i>Modify</a>
+                                                            <a class="dropdown-item" href="{{ route('announcement.delete', ['anncsID' => $announcement->anncsID]) }}"><i
+                                                                    class="fe fe-trash mr-2"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
                                                 <td>{{ $announcement->anncsTitle }}</td>
                                                 <td>{{ $announcement->availableDateTime }}</td>
                                                 <td>{{ $announcement->endDateTime }}</td>

@@ -65,4 +65,26 @@ class AnnouncementController extends Controller
 
         return view('announcements.post', compact('announcement'));
     }
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'anncsID' => 'required|integer|exists:announcements,anncsID',
+        ]);
+
+        try {
+            $announcement = Announcement::where('anncsID', $request->input('anncsID'))->first();
+
+            if ($announcement) {
+                $announcement->delete();
+                return redirect()->route('announcements.table')->with('success', 'Announcement deleted successfully.');
+            } else {
+                return redirect()->route('announcements.table')->with('error', 'Announcement not found.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('announcements.table')->with('error', 'There was an error deleting the announcement. Please try again.');
+        }
+    }
+
+
 }
