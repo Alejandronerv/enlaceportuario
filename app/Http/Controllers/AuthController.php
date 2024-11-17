@@ -143,4 +143,53 @@ class AuthController extends Controller
             return redirect()->route('user.profile')->with('error', 'User not found.');
         }
     }
+
+    // Get user information for update
+    public function editUser(Request $request)
+    {
+
+        $userEmail = $request->input('email');
+
+        $user = User::where('email', $userEmail)->first();
+
+        if (!$user) {
+            return redirect()->route('users.table')->with('error', 'User not found.');
+        }
+
+        return view('users.profile-edit', compact('user'));
+    }
+
+    // Update user information
+    public function updateUser(Request $request)
+    {
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+        //     'shipping_line' => 'required|string|max:255',
+        //     'type' => 'required|integer',
+        //     'note' => 'nullable|string|max:255',
+        // ]);
+
+        try {
+            $userEmail = $request->input('email');
+            $user = User::where('email', $userEmail)->first();
+          
+            if ($user) {
+                $user->name = $request->input('inputName');
+                // $user->email = $request->input('email');
+                $user->shipping_line = $request->input('shipagency');
+                $user->type = $request->input('role');
+                $user->note = $request->input('inputNote');
+                $user->save();
+
+                return redirect()->route('users.table')->with('success', 'User updated successfully.');
+          
+            } else {
+                return redirect()->route('users.table')->with('error', 'User not found.');
+            }
+        } catch (\Exception $e) {
+            Log::error($e); // Log the error
+            return redirect()->route('users.table')->with('error', 'There was an error updating the user. Please try again.');
+        }
+    }
 }

@@ -113,8 +113,17 @@ Route::get('/user.reset.password', [AuthController::class, 'updatePassword'])->n
 Route::get('/user.profile', function () {
     return view('users.profile');
 })->name('user.profile')->middleware('auth');
+// UPDATE PROFILE BY ADMIN
+Route::get('/user.profile-update', function () {
+    return view('users.profile-update');
+})->name('user.profile-update')->middleware('auth');
 
 Route::post('/user.update.password', [AuthController::class, 'updateProfile'])->name('user.update.password')->middleware('auth');
+
+// EDIT PROFILE BY ADMIN
+Route::get('/user.profile-edit', [AuthController::class, 'editUser'])->name('user.profile-edit');
+Route::get('/user.update', [AuthController::class, 'updateUser'])->name('user.update');
+
 
 // ANNOUNCEMENTS LIST   
 Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
@@ -132,5 +141,3 @@ Route::get('/estadisticas.sample', function () {
 Route::get('{any}', function () {
     return view('errors.404');
 })->where('any', '.*');
-
-
