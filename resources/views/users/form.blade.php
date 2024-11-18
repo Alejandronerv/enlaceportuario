@@ -23,6 +23,18 @@
 
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                     <div class="card">
+                        
+                        @if ($errors->any())
+                        <div class="alert alert-danger" role="alert"><button type="button" class="close"
+                            data-dismiss="alert" aria-hidden="true">×</button>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="fa fa-check-circle-o mr-2" aria-hidden="true">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="card-body">
 
                             <div class="form-group mb-0 mt-4 row">
@@ -53,7 +65,7 @@
                                     <label for="inputPassword" class="col-md-3 form-label">Password</label>
                                     <div class="col-md-9">
                                         <input type="password" class="form-control" id="inputPassword"
-                                            name="inputPassword" placeholder="Password" required>
+                                            name="inputPassword" minlength="8" placeholder="Password" required>
                                     </div>
                                 </div>
 

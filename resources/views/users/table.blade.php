@@ -83,11 +83,14 @@
                                                             aria-expanded="false">Options <i
                                                                 class="fa fa-angle-down"></i></a>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="{{ route('user.profile-edit', ['email' => $user->email]) }}"><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('user.profile-edit', ['email' => $user->email]) }}"><i
                                                                     class="fe fe-eye mr-2"></i> View</a>
-                                                            <a class="dropdown-item" href="{{ route('user.reset.password', ['email' => $user->email]) }}"><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('user.reset.password', ['email' => $user->email]) }}"><i
                                                                     class="fe fe-refresh-ccw mr-2"></i> Reset Password</a>
-                                                            <a class="dropdown-item" href="#"><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('user.delete', ['email' => $user->email]) }}"><i
                                                                     class="fe fe-trash mr-2"></i> Delete</a>
                                                         </div>
                                                     </div>

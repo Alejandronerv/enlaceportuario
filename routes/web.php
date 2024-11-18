@@ -124,6 +124,8 @@ Route::post('/user.update.password', [AuthController::class, 'updateProfile'])->
 Route::get('/user.profile-edit', [AuthController::class, 'editUser'])->name('user.profile-edit');
 Route::get('/user.update', [AuthController::class, 'updateUser'])->name('user.update');
 
+// DELETE USER
+Route::get('/user.delete', [AuthController::class, 'deleteUser'])->name('user.delete');
 
 // ANNOUNCEMENTS LIST   
 Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');

@@ -65,6 +65,13 @@ class AuthController extends Controller
     // SAVE NEW USER FROM ADMIN USER
     public function create(Request $request)
     {
+        $request->validate([
+            'inputName' => 'required|string|max:255',
+            'inputEmail' => 'required|string|email|max:255|unique:users,email',
+            'inputPassword' => 'required|string|min:8',
+            'shipagency' => 'required|string|max:255',
+        ]);
+
         try {
             $user = new User;
             $user->name = $request->input('inputName');
@@ -173,7 +180,7 @@ class AuthController extends Controller
         try {
             $userEmail = $request->input('email');
             $user = User::where('email', $userEmail)->first();
-          
+
             if ($user) {
                 $user->name = $request->input('inputName');
                 // $user->email = $request->input('email');
@@ -183,13 +190,31 @@ class AuthController extends Controller
                 $user->save();
 
                 return redirect()->route('users.table')->with('success', 'User updated successfully.');
-          
             } else {
                 return redirect()->route('users.table')->with('error', 'User not found.');
             }
         } catch (\Exception $e) {
             Log::error($e); // Log the error
             return redirect()->route('users.table')->with('error', 'There was an error updating the user. Please try again.');
+        }
+    }
+    // Delete user
+    public function deleteUser(Request $request)
+    {
+        $userEmail = $request->input('email');
+
+        try {
+            $user = User::where('email', $userEmail)->first();
+
+            if ($user) {
+                $user->delete();
+                return redirect()->route('users.table')->with('success', 'User deleted successfully.');
+            } else {
+                return redirect()->route('users.table')->with('error', 'User not found.');
+            }
+        } catch (\Exception $e) {
+            Log::error($e);
+            return redirect()->route('users.table')->with('error', 'There was an error deleting the user. Please try again.');
         }
     }
 }
