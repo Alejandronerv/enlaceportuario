@@ -113,6 +113,7 @@ Route::get('/user.reset.password', [AuthController::class, 'updatePassword'])->n
 Route::get('/user.profile', function () {
     return view('users.profile');
 })->name('user.profile')->middleware('auth');
+
 // UPDATE PROFILE BY ADMIN
 Route::get('/user.profile-update', function () {
     return view('users.profile-update');
@@ -132,6 +133,11 @@ Route::get('/users.table', [AuthController::class, 'table'])->name('users.table'
 
 // ANNOUNCEMENT DELETE
 Route::get('/announcement.delete', [AnnouncementController::class, 'delete'])->name('announcement.delete')->middleware('auth');
+
+// ANNOUNCEMENT EDIT
+Route::get('/announcement.edit', [AnnouncementController::class, 'editAnnouncement'])->name('announcement.edit');
+Route::get('/announcement.update', [AnnouncementController::class, 'updateAnnouncement'])->name('announcement.update');
+
 
 // CHARTS
 Route::get('/estadisticas.sample', function () {

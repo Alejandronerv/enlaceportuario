@@ -85,7 +85,7 @@
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item"
                                                                 href="{{ route('user.profile-edit', ['email' => $user->email]) }}"><i
-                                                                    class="fe fe-eye mr-2"></i> View</a>
+                                                                    class="fe fe-edit mr-2"></i> Edit</a>
                                                             <a class="dropdown-item"
                                                                 href="{{ route('user.reset.password', ['email' => $user->email]) }}"><i
                                                                     class="fe fe-refresh-ccw mr-2"></i> Reset Password</a>

@@ -77,8 +77,8 @@
                                                             <a class="dropdown-item"
                                                                 href="{{ route('announcements.post', ['anncsID' => $announcement->anncsID]) }}"><i
                                                                     class="fe fe-eye mr-2"></i> View</a>
-                                                            <a class="dropdown-item" href="# }}"><i
-                                                                    class="fe fe-refresh-ccw mr-2"></i>Modify</a>
+                                                            <a class="dropdown-item" href="{{ route('announcement.edit', ['anncsID' => $announcement->anncsID]) }}"><i
+                                                                    class="fe fe-edit mr-2"></i>Edit</a>
                                                             <a class="dropdown-item" href="{{ route('announcement.delete', ['anncsID' => $announcement->anncsID]) }}"><i
                                                                     class="fe fe-trash mr-2"></i> Delete</a>
                                                         </div>

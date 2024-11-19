@@ -6,6 +6,7 @@ use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 
 class AnnouncementController extends Controller
@@ -14,14 +15,15 @@ class AnnouncementController extends Controller
     {
         $request->validate([
             'inputTitle' => 'required|string|max:100',
-            //     'availableDateTime' => 'required|date',
-            //     'endDateTime' => 'required|date',
-            //     'createUser' => 'required|date',
-            //     'created_at' => 'required|date',
+            'inputAvailableDate' => 'required|date_format:Y-m-d',
+            // 'inputAvailableTime' => 'required|date_format:H:i:s',
+            'inputEndDate' => 'required|date_format:Y-m-d',
+            // 'inputEndTime' => 'required|date_format:H:i:s',
+            // 'createUser' => 'required|string|max:255',
         ]);
 
+        try {
         $username = Session::get('username');
-
         $announcement = new Announcement;
         $announcement->anncsTitle = $request->input('inputTitle');
         $announcement->availableDateTime = $request->input('inputAvailableDate') . ' ' . $request->input('inputAvailableTime');
@@ -29,8 +31,15 @@ class AnnouncementController extends Controller
         $announcement->anncsBody = $request->input('inputBody');
         $announcement->createUser = $username;
         $announcement->save();
-
         return redirect()->route('announcements.table')->with('success', 'Data saved successfully.');
+
+    } catch (\Exception $e) {
+        // Captura cualquier excepción que ocurra
+        Log::error($e); // Registra el error en los logs
+
+        // Redirige hacia atrás con un mensaje de error
+        return redirect()->route('announcements.table')->with('error', 'There was an error saving the record. Please try again.');
+    }
     }
 
 
@@ -65,6 +74,55 @@ class AnnouncementController extends Controller
 
         return view('announcements.post', compact('announcement'));
     }
+
+
+        // Get user information for update
+        public function editAnnouncement(Request $request)
+        {
+    
+            $anncsID = $request->input('anncsID');
+    
+            $announcement = Announcement::where('anncsID', $anncsID)->first();
+    
+            if (!$announcement) {
+                return redirect()->route('announcements.table')->with('error', 'User not found.');
+            }
+    
+            return view('announcements.edit', compact('announcement'));
+        }
+
+        // Update announcement information
+        public function updateAnnouncement(Request $request)
+        {
+            // $request->validate([
+            //     'name' => 'required|string|max:255',
+            //     'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            //     'shipping_line' => 'required|string|max:255',
+            //     'type' => 'required|integer',
+            //     'note' => 'nullable|string|max:255',
+            // ]);
+    
+            try {
+                $anncsID = $request->input('inputId');
+                $announcement = Announcement::where('anncsID', $anncsID)->first();
+    
+                if ($announcement) {
+                    $announcement->anncsTitle = $request->input('inputTitle');
+                    $announcement->availableDateTime = $request->input('inputAvailableDate') . ' ' . $request->input('inputAvailableTime');
+                    $announcement->endDateTime = $request->input('inputEndDate') . ' ' . $request->input('inputEndTime');
+                    $announcement->anncsBody = $request->input('inputBody');
+                    $announcement->save();
+    
+                    return redirect()->route('announcements.table')->with('success', 'Announcement updated successfully.');
+                } else {
+                    return redirect()->route('announcements.table')->with('error', 'Announcement not found.');
+                }
+            } catch (\Exception $e) {
+                Log::error($e); // Log the error
+                return redirect()->route('announcements.table')->with('error', 'There was an error updating the announcement. Please try again.');
+            }
+        }
+
 
     public function delete(Request $request)
     {

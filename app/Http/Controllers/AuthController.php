@@ -198,6 +198,7 @@ class AuthController extends Controller
             return redirect()->route('users.table')->with('error', 'There was an error updating the user. Please try again.');
         }
     }
+    
     // Delete user
     public function deleteUser(Request $request)
     {
