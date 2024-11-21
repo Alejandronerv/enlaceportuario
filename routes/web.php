@@ -47,7 +47,7 @@ Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryPro
 // API RESTFUL
 // Route::get('/apitest', [PostController::class, 'apiTest'])->name('apitest');
 // Route::get('/autorizo', [ApiAuthController::class, 'apiAuth'])->name('autorizo');
-Route::get('/berth.table', [ApiAuthController::class, 'operationBerth'])->name('berth.table');
+Route::get('/berth.table', [ApiAuthController::class, 'operationBerth'])->name('berth.table')->middleware('auth');
 
 // ANNOUNCEMENTS*********************************************************************************************************
 //  FORM
@@ -55,11 +55,11 @@ Route::get('/announcements.create', function () {
     return view('announcements.create');
 })->name('announcements.create')->middleware('auth');
 // SAVE
-Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save')->middleware('auth');;
+Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save')->middleware('auth');
 // ANNOUNCEMENTS LIST   
-Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('auth');;
+Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('auth');
 // SINGLE POST
-Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post')->middleware('auth');;
+Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post')->middleware('auth');
 
 
 // INVENTORY YARD*********************************************************************************************************
