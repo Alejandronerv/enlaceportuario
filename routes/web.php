@@ -77,6 +77,10 @@ Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table']
 Route::get('/yardinventory.list-inventory-yard', [InventoryYardFileController::class, 'listInventoryYard'])->name('yardinventory.list-inventory-yard')->middleware('auth');
 Route::get('/yardinventory.list-density-forecast', [InventoryYardFileController::class, 'listDensityForecast'])->name('yardinventory.list-density-forecast')->middleware('auth');
 
+// DELETE
+Route::get('/yardinventory.delete', [InventoryYardFileController::class, 'delete'])->name('yardinventory.delete');
+
+
 // LIST FOR DASHBOARD
 Route::get('/yardinventory.list', [InventoryYardFileController::class, 'list'])->name('yardinventory.list')->middleware('auth');
 

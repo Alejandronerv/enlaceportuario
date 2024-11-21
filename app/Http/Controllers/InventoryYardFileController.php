@@ -81,4 +81,25 @@ class InventoryYardFileController extends Controller
         ->get();
         return view('yardinventory.list-density-forecast', compact('listdensityforecastfiles'));
     }
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:inventory_yard_files,id',
+        ]);
+
+        try {
+            $inventoryYardFile = InventoryYardFile::find($request->input('id'));
+
+            if ($inventoryYardFile) {
+                $inventoryYardFile->delete();
+                return redirect()->route('yardinventory.table')->with('success', 'Record deleted successfully.');
+            } else {
+                return redirect()->route('yardinventory.table')->with('error', 'Record not found.');
+            }
+        } catch (\Exception $e) {
+            Log::error($e); // Log the error
+            return redirect()->route('yardinventory.table')->with('error', 'There was an error deleting the record. Please try again.');
+        }
+    }
+    
 }

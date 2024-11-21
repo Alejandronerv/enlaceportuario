@@ -35,6 +35,14 @@
                             </div>
                         @endif
 
+                        @if (session('error'))
+                        <div class="alert alert-danger" role="alert"><button type="button" class="close"
+                                data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                         <div class="card-body">
 
                             <div class="form-group mb-0 mt-4 row">
@@ -52,6 +60,7 @@
                                     style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th class="wd-15p border-bottom-0">Action</th>
                                             <th class="wd-15p border-bottom-0">File Name</th>
                                             <th class="wd-15p border-bottom-0">Created At</th>
                                             <th class="wd-20p border-bottom-0">Agency</th>
@@ -63,6 +72,24 @@
 
                                         @foreach ($inventoryyardfile as $yardinventory)
                                             <tr>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="#" class="btn btn-light btn-sm"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Options <i
+                                                                class="fa fa-angle-down"></i></a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item"
+                                                                href="{{ asset('storage/uploads/' . $yardinventory->file_name) }}"><i
+                                                                    class="fe fe-eye mr-2"></i> View</a>
+                                                            {{-- <a class="dropdown-item" href="{{ route('yardinventory.delete', ['id' => $yardinventory->id]) }}"><i
+                                                                    class="fe fe-edit mr-2"></i>Edit</a> --}}
+                                                            <a class="dropdown-item" href="{{ route('yardinventory.delete', ['id' => $yardinventory->id]) }}"><i
+                                                                    class="fe fe-trash mr-2"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
                                                 <td> <a
                                                         href="{{ asset('storage/uploads/' . $yardinventory->file_name) }}">{{ $yardinventory->file_name }}</a>
                                                 </td>
