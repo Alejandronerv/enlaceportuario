@@ -10,12 +10,30 @@
                             <div class="col-md-7 col-lg-5">
                                 <div class="card card-group mb-0">
                                     <div class="card p-4">
-										
+
                                         @if (session('success'))
                                             <div class="alert alert-success" role="alert"><button type="button"
                                                     class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                                 <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>
                                                 {{ session('success') }}
+                                            </div>
+                                        @endif
+
+                                        @if (session('error'))
+                                            <div class="alert alert-danger" role="alert"><button type="button"
+                                                    class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <i class="fa fa-exclamation-circle mr-2" aria-hidden="true"></i>
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
+
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger" role="alert"><button type="button"
+                                                    class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <i class="fa fa-exclamation-circle mr-2" aria-hidden="true"></i>
+                                                @foreach ($errors->all() as $error)
+                                                    {{ $error }}
+                                                @endforeach
                                             </div>
                                         @endif
 

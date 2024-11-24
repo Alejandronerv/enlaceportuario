@@ -49,17 +49,26 @@ class AuthController extends Controller
 
     public function save(Request $request)
     {
-
+        $email_system_admin = env('EMAIL_SYSTEM_ADMIN');
+        try {
         $user = new User;
         $user->email = $request->input('userName');
         $user->name = $request->input('yourName');
         $user->note = $request->input('companyName');
-        $user->password = "P12345";
+        $user->password = "P12345.9876p*";
         $user->status = 2; // 0 = Inactive, 1 = Active, 2 = New Request
         $user->save();
-        sendEmailUserNewRequest($user->name, $user->email, $user->note);
+        sendEmailUserNewRequest($user->name, $email_system_admin, $user->note,$user->email);
 
         return redirect()->route('register')->with('success', 'Request sent successfully. You will receive a notification by email soon with your process status.');
+    } catch (\Exception $e) {
+        // Captura cualquier excepción que ocurra
+        Log::error($e); // Registra el error en los logs
+
+        // Redirige hacia atrás con un mensaje de error
+        return redirect()->route('register')->with('error', 'There was an error creating your request. Please try again or contact the system administrator.');
+    }
+   
     }
 
     // SAVE NEW USER FROM ADMIN USER
@@ -199,23 +208,29 @@ class AuthController extends Controller
         }
     }
     
-    // Delete user
-    public function deleteUser(Request $request)
-    {
-        $userEmail = $request->input('email');
+ // Delete user
+ public function deleteUser(Request $request)
+ {
+     $userEmail = $request->input('email');
+     $email_super_administrator = env('EMAIL_SUPER_ADMINISTRATOR');
+     
 
-        try {
-            $user = User::where('email', $userEmail)->first();
+     try {
+         if ($userEmail === $email_super_administrator) {
+             return redirect()->route('users.table')->with('error', 'Operation denied. Cannot delete this user.');
+         }
 
-            if ($user) {
-                $user->delete();
-                return redirect()->route('users.table')->with('success', 'User deleted successfully.');
-            } else {
-                return redirect()->route('users.table')->with('error', 'User not found.');
-            }
-        } catch (\Exception $e) {
-            Log::error($e);
-            return redirect()->route('users.table')->with('error', 'There was an error deleting the user. Please try again.');
-        }
-    }
+         $user = User::where('email', $userEmail)->first();
+
+         if ($user) {
+             $user->delete();
+             return redirect()->route('users.table')->with('success', 'User deleted successfully.');
+         } else {
+             return redirect()->route('users.table')->with('error', 'User not found.');
+         }
+     } catch (\Exception $e) {
+         Log::error($e);
+         return redirect()->route('users.table')->with('error', 'There was an error deleting the user. Please try again.');
+     }
+ }
 }

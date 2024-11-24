@@ -21,7 +21,7 @@ function generateRandomPassword($length = 8)
     return $randomString;
 }
 
-function sendEmailUserNewRequest($name, $email, $company)
+function sendEmailUserNewRequest($name, $email, $company,$email_requested)
 {
     $domain = env('MAILGUN_DOMAIN');
     $apiKey = env('MAILGUN_SECRET');
@@ -35,7 +35,7 @@ function sendEmailUserNewRequest($name, $email, $company)
         'to'      => 'TEST <alejandro@nervcorp.io>',
         'subject' => 'CCTlink - New User Request',
         'template' => 'register_new_user',
-        'h:X-Mailgun-Variables' => json_encode(['name' => $name, 'email' => $email, 'company' => $company]),
+        'h:X-Mailgun-Variables' => json_encode(['name' => $name, 'email' => $email, 'company' => $company, 'email_requested' => $email_requested]),
     ];
 
     // Send the email
