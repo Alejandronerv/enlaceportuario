@@ -51,24 +51,23 @@ class AuthController extends Controller
     {
         $email_system_admin = env('EMAIL_SYSTEM_ADMIN');
         try {
-        $user = new User;
-        $user->email = $request->input('userName');
-        $user->name = $request->input('yourName');
-        $user->note = $request->input('companyName');
-        $user->password = "P12345.9876p*";
-        $user->status = 2; // 0 = Inactive, 1 = Active, 2 = New Request
-        $user->save();
-        sendEmailUserNewRequest($user->name, $email_system_admin, $user->note,$user->email);
+            $user = new User;
+            $user->email = $request->input('userName');
+            $user->name = $request->input('yourName');
+            $user->note = $request->input('companyName');
+            $user->password = "P12345.9876p*";
+            $user->status = 2; // 0 = Inactive, 1 = Active, 2 = New Request
+            $user->save();
+            sendEmailUserNewRequest($user->name, $email_system_admin, $user->note, $user->email);
 
-        return redirect()->route('register')->with('success', 'Request sent successfully. You will receive a notification by email soon with your process status.');
-    } catch (\Exception $e) {
-        // Captura cualquier excepción que ocurra
-        Log::error($e); // Registra el error en los logs
+            return redirect()->route('register')->with('success', 'Request sent successfully. You will receive a notification by email soon with your process status.');
+        } catch (\Exception $e) {
+            // Captura cualquier excepción que ocurra
+            Log::error($e); // Registra el error en los logs
 
-        // Redirige hacia atrás con un mensaje de error
-        return redirect()->route('register')->with('error', 'There was an error creating your request. Please try again or contact the system administrator.');
-    }
-   
+            // Redirige hacia atrás con un mensaje de error
+            return redirect()->route('register')->with('error', 'There was an error creating your request. Please try again or contact the system administrator.');
+        }
     }
 
     // SAVE NEW USER FROM ADMIN USER
@@ -105,7 +104,7 @@ class AuthController extends Controller
 
     public function table()
     {
-        $users = User::all();
+        $users = User::whereIn('status', [0, 1])->get();
         return view('users.table', compact('users'));
     }
 
@@ -207,30 +206,89 @@ class AuthController extends Controller
             return redirect()->route('users.table')->with('error', 'There was an error updating the user. Please try again.');
         }
     }
-    
- // Delete user
- public function deleteUser(Request $request)
- {
-     $userEmail = $request->input('email');
-     $email_super_administrator = env('EMAIL_SUPER_ADMINISTRATOR');
-     
 
-     try {
-         if ($userEmail === $email_super_administrator) {
-             return redirect()->route('users.table')->with('error', 'Operation denied. Cannot delete this user.');
-         }
+    // Delete user
+    public function deleteUser(Request $request)
+    {
+        $userEmail = $request->input('email');
+        $email_super_administrator = env('EMAIL_SUPER_ADMINISTRATOR');
 
-         $user = User::where('email', $userEmail)->first();
 
-         if ($user) {
-             $user->delete();
-             return redirect()->route('users.table')->with('success', 'User deleted successfully.');
-         } else {
-             return redirect()->route('users.table')->with('error', 'User not found.');
-         }
-     } catch (\Exception $e) {
-         Log::error($e);
-         return redirect()->route('users.table')->with('error', 'There was an error deleting the user. Please try again.');
-     }
- }
+        try {
+            if ($userEmail === $email_super_administrator) {
+                return redirect()->route('users.table')->with('error', 'Operation denied. Cannot delete this user.');
+            }
+
+            $user = User::where('email', $userEmail)->first();
+
+            if ($user) {
+                $user->delete();
+                return redirect()->route('users.table')->with('success', 'User deleted successfully.');
+            } else {
+                return redirect()->route('users.table')->with('error', 'User not found.');
+            }
+        } catch (\Exception $e) {
+            Log::error($e);
+            return redirect()->route('users.table')->with('error', 'There was an error deleting the user. Please try again.');
+        }
+    }
+
+    public function newRequestList()
+    {
+        $newUserRequests = User::where('status', 2)->get();
+        return view('users.new-users-list', compact('newUserRequests'));
+    }
+
+    // Activate New Users
+    public function activateUser(Request $request)
+    {
+
+        $userEmail = $request->input('email');
+
+        $user = User::where('email', $userEmail)->first();
+
+        if (!$user) {
+            return redirect()->route('users.new-users-list')->with('error', 'User not found.');
+        }
+
+        return view('users.activate', compact('user'));
+    }
+
+    public function activatingUser(Request $request)
+    {
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+        //     'shipping_line' => 'required|string|max:255',
+        //     'type' => 'required|integer',
+        //     'note' => 'nullable|string|max:255',
+        // ]);
+
+        try {
+            $userEmail = $request->input('email');
+            $nameLastName = $request->input('name');
+            $user = User::where('email', $userEmail)->first();
+            $newPassword = generateRandomPassword();
+
+            if ($user) {
+                // $user->name = $request->input('inputName');
+                // $user->email = $request->input('email');
+                $user->shipping_line = $request->input('shipagency');
+                $user->password = $newPassword;
+                $user->status = 1;
+                // $user->type = $request->input('role');
+                // $user->note = $request->input('inputNote');
+                $user->save();
+
+                sendEmailUserActivated($nameLastName, $newPassword, $userEmail);
+
+                return redirect()->route('users.table')->with('success', 'User '.$userEmail.' account has been activated.');
+            } else {
+                return redirect()->route('users.table')->with('error', 'User not found.');
+            }
+        } catch (\Exception $e) {
+            Log::error($e); // Log the error
+            return redirect()->route('users.table')->with('error', 'There was an error activating the user. Please try again.');
+        }
+    }
 }

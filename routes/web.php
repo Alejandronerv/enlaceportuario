@@ -40,6 +40,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // DASHBOARD*********************************************************************************************************
 Route::get('/dashboard', [AnnouncementController::class, 'list'])->name('dashboard')->middleware('auth');
+
 // LIST FOR DASHBOARD
 Route::get('/yardinventory.list', [InventoryYardFileController::class, 'list'])->name('yardinventory.list')->middleware('auth');
 
@@ -102,22 +103,38 @@ Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vessel
 // *********************************************************************************************************
 
 // USERS**************************************************************************************************************
+
 // FORM TO CREATE A NEW USER BY EXTERNAL // SAVE
 Route::post('/user.save', [AuthController::class, 'save'])->name('user.save');
+
 // LIST
-Route::post('/users.table', [AuthController::class, 'table'])->name('users.table');
+Route::post('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
+
+// LIST NEW REQUESTS
+Route::get('/users.new-users-list', [AuthController::class, 'newRequestList'])->name('users.new-users-list')->middleware('auth');
+
 // FORM TO CREATE A NEW USER BY ADMIN
 Route::get('/user.form', function () {
     return view('users.form');
 })->name('user.form')->middleware('auth');
+
 // SAVE NEW USER FROM ADMIN
-Route::post('/user.create', [AuthController::class, 'create'])->name('user.create')->middleware('auth');;
+Route::post('/user.create', [AuthController::class, 'create'])->name('user.create')->middleware('auth');
+
 // USER RESET PASSWORD
 Route::get('/user.reset.password', [AuthController::class, 'updatePassword'])->name('user.reset.password');
+
+// USER Activate
+Route::post('/user.activating', [AuthController::class, 'activatingUser'])->name('user.activating')->middleware('auth');
+
 // EDIT PROFILE
 Route::get('/user.profile', function () {
     return view('users.profile');
 })->name('user.profile')->middleware('auth');
+
+// USER ACTIVATE NEW REQUESTS
+Route::get('/user.activate', [AuthController::class, 'activateUser'])->name('user.activate');
+
 // ********************************************************************************************************************************
 
 // UPDATE PROFILE BY ADMIN*********************************************************************************************************

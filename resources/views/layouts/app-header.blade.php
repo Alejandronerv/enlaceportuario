@@ -3,7 +3,7 @@
 $name = Session::get('name');
 $type = Session::get('type');
 $shipping_line = Session::get('shipping_line');
-
+$countUsersWithStatusTwo = countUsersWithStatusTwo();
 ?>
 <div class="app-header header top-header">
     <div class="container">
@@ -17,7 +17,27 @@ $shipping_line = Session::get('shipping_line');
             <a id="horizontal-navtoggle" class="animated-arrow hor-toggle"><span></span></a><!-- sidebar-toggle-->
             
             <div class="d-flex order-lg-2 ml-auto">
-              
+                <div class="dropdown header-notify pl-4">
+                    <a class="nav-link icon p-0" data-toggle="dropdown">
+                        <svg class="header-icon" x="1008" y="1248" viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false"><path opacity=".3" d="M12 6.5c-2.49 0-4 2.02-4 4.5v6h8v-6c0-2.48-1.51-4.5-4-4.5z"></path><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-11c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2v-5zm-2 6H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zM7.58 4.08L6.15 2.65C3.75 4.48 2.17 7.3 2.03 10.5h2a8.445 8.445 0 013.55-6.42zm12.39 6.42h2c-.15-3.2-1.73-6.02-4.12-7.85l-1.42 1.43a8.495 8.495 0 013.54 6.42z"></path></svg>
+                        @if ($countUsersWithStatusTwo >= 1)
+                        <span class="pulse "></span>
+                        @endif
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow  animated">
+                        <a href="{{ route('users.new-users-list') }}" class="dropdown-item d-flex pb-3">
+                            <svg class="header-icon mr-4" x="1008" y="1248" viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                <path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 13h5v7h-5z" opacity=".3"/><path d="M23 11.01L18 11c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5c.55 0 1-.45 1-1v-9c0-.55-.45-.99-1-.99zM23 20h-5v-7h5v7zM2 4h18v5h2V4c0-1.11-.9-2-2-2H2C.89 2 0 2.89 0 4v12c0 1.1.89 2 2 2h7v2H7v2h8v-2h-2v-2h2v-2H2V4zm9 2l-.97 3H7l2.47 1.76-.94 2.91 2.47-1.8 2.47 1.8-.94-2.91L15 9h-3.03z"/></svg>
+                            <div>
+                                <div class="font-weight-bold">New Users Request</div>
+                                <div class="small text-muted">Peding records {{ $countUsersWithStatusTwo }}</div>
+                            </div>
+                        </a>
+                        {{-- <div class=" text-center p-2 border-top">
+                            <a href="#" class="">View All Notifications</a>
+                        </div> --}}
+                    </div>
+                </div>
                 <div class="dropdown profile-dropdown">
                     <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                         <span>

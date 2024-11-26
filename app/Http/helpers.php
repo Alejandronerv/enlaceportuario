@@ -2,6 +2,7 @@
 
 use Mailgun\Mailgun;
 use App\Models\InventoryYardFile;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 
@@ -67,6 +68,29 @@ function sendEmailUserResetPassword($nameLastName,$newPassword,$userEmail)
     return $response;
 }
 
+function sendEmailUserActivated($nameLastName,$newPassword,$userEmail)
+{
+    $domain = env('MAILGUN_DOMAIN');
+    $apiKey = env('MAILGUN_SECRET');
+
+    // Initialize the Mailgun client
+    $mgClient = Mailgun::create($apiKey);
+
+    // Define the email parameters
+    $params = [
+        'from'    => "CCTlink Notifications <notifications@{$domain}>",
+        'to'      => $userEmail,
+        'subject' => 'CCTlink - Account Activated.',
+        'template' => 'activated_user',
+        'h:X-Mailgun-Variables' => json_encode(['userNameLastName' => $nameLastName, 'newPassword' => $newPassword]),
+    ];
+
+    // Send the email
+    $response = $mgClient->messages()->send($domain, $params);
+
+    return $response;
+}
+
 
 function latestRecordYardInventory()
 {
@@ -91,3 +115,9 @@ function latestDensityForecast()
     }
     return null;
 }
+
+function countUsersWithStatusTwo()
+{
+    return User::where('status', 2)->count();
+}
+
