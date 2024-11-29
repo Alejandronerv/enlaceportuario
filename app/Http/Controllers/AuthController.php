@@ -49,6 +49,11 @@ class AuthController extends Controller
 
     public function save(Request $request)
     {
+        $request->validate([
+            'userName' => 'required|string|email|max:255|unique:users,email',
+            'yourName' => 'required|string|max:255',
+            'companyName' => 'required|string|max:255',
+        ]);
         $email_system_admin = env('EMAIL_SYSTEM_ADMIN');
         try {
             $user = new User;
