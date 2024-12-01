@@ -46,6 +46,7 @@ Route::get('/yardinventory.list', [InventoryYardFileController::class, 'list'])-
 
 // *********************************************************************************************************
 
+
 // EMAIL RECOVERY
 Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
 // *********************************************************************************************************
@@ -63,7 +64,7 @@ Route::get('/announcements.create', function () {
 // SAVE
 Route::post('/announcement.save', [AnnouncementController::class, 'save'])->name('announcement.save')->middleware('auth');
 // ANNOUNCEMENTS LIST   
-Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('auth');
+Route::get('/announcements.table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('auth','check.type');
 // SINGLE POST
 Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name('announcements.post')->middleware('auth');
 // *********************************************************************************************************
@@ -73,13 +74,13 @@ Route::get('/announcements.post', [AnnouncementController::class, 'show'])->name
 //  FORM
 Route::get('/yardinventory.form', function () {
     return view('yardinventory.form');
-})->name('yardinventory.form')->middleware('auth');;
+})->name('yardinventory.form')->middleware('auth');
 
 // SAVE
 Route::post('/yardinventory.save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save')->middleware('auth');
 
 // LIST   
-Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth');
+Route::get('/yardinventory.table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth','check.type');
 Route::get('/yardinventory.list-inventory-yard', [InventoryYardFileController::class, 'listInventoryYard'])->name('yardinventory.list-inventory-yard')->middleware('auth');
 Route::get('/yardinventory.list-density-forecast', [InventoryYardFileController::class, 'listDensityForecast'])->name('yardinventory.list-density-forecast')->middleware('auth');
 
@@ -107,8 +108,6 @@ Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vessel
 // FORM TO CREATE A NEW USER BY EXTERNAL // SAVE
 Route::post('/user.save', [AuthController::class, 'save'])->name('user.save');
 
-// LIST
-Route::post('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
 
 // LIST NEW REQUESTS
 Route::get('/users.new-users-list', [AuthController::class, 'newRequestList'])->name('users.new-users-list')->middleware('auth');
@@ -154,7 +153,7 @@ Route::get('/user.delete', [AuthController::class, 'deleteUser'])->name('user.de
 
 // ANNOUNCEMENTS************************************************************************************************************   
 // LIST
-Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth');
+Route::get('/users.table', [AuthController::class, 'table'])->name('users.table')->middleware('auth','check.type');
 
 //DELETE
 Route::get('/announcement.delete', [AnnouncementController::class, 'delete'])->name('announcement.delete')->middleware('auth');
