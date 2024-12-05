@@ -30,12 +30,13 @@
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-2">
                                     <a href="{{ route('dashboard') }}" class="btn btn-light"><i
-                                        class="fe fe-arrow-left"></i>
-                                    Dashboard</a>
+                                            class="fe fe-arrow-left"></i>
+                                        Dashboard</a>
                                 </div>
                             </div>
 
-                            <form class="form-horizontal" action="{{ route('vessel-operation-summary.table') }}" method="post">
+                            <form class="form-horizontal" action="{{ route('vessel-operation-summary.table') }}"
+                                method="post">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="inputYearMonth" class="col-md-3 form-label">Year-Month</label>
@@ -52,6 +53,16 @@
                                     </div>
                                 </div>
                             </form>
+
+                            <!-- Loading indicator -->
+                            <div id="loadingIndicator" style="display: none;">
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -59,3 +70,10 @@
 
 
                 @include('layouts.main-footer')
+
+                <script>
+                    document.getElementById('searchForm').addEventListener('submit', function() {
+                        document.getElementById('searchButton').disabled = true;
+                        document.getElementById('loadingIndicator').style.display = 'block';
+                    });
+                </script>
