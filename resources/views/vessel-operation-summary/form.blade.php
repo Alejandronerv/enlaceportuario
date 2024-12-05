@@ -15,6 +15,11 @@
         <div class="app-content page-body">
             <div class="container">
 
+                <!---Global-loader-->
+                <div id="global-loader">
+                    <img src="/images/svgs/loader.svg" alt="loader">
+                </div>
+
                 <!--Page header-->
                 <div class="page-header">
                     <div class="page-leftheader">
@@ -54,15 +59,6 @@
                                 </div>
                             </form>
 
-                            <!-- Loading indicator -->
-                            <div id="loadingIndicator" style="display: none;">
-                                <div class="d-flex justify-content-center">
-                                    <div class="spinner-border" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -70,10 +66,3 @@
 
 
                 @include('layouts.main-footer')
-
-                <script>
-                    document.getElementById('searchForm').addEventListener('submit', function() {
-                        document.getElementById('searchButton').disabled = true;
-                        document.getElementById('loadingIndicator').style.display = 'block';
-                    });
-                </script>
