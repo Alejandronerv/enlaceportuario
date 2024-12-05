@@ -97,13 +97,13 @@ class ApiAuthController extends Controller
         $client = new Client();
         $api_host = env('API_HOST');
         $yearMonth = $request->input('inputYearMonth');
-        $formattedyearMonth = $yearMonth->format('Ym');
+        $formattedYearMonth = Carbon::createFromFormat('Ym', $yearMonth)->format('Ym');
         $agencyCode = Session::get('shipping_line');
 
         // Retrieve tokens from session
         $accessToken = Session::get('accessToken');
 
-        $response = $client->request('GET', $api_host . '/api/ver1/VesselOperationSummary/'.$agencyCode.'/'.$formattedyearMonth, [
+        $response = $client->request('GET', $api_host . '/api/ver1/VesselOperationSummary/'.$agencyCode.'/'.$formattedYearMonth, [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,
