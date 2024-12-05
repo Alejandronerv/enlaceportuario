@@ -47,9 +47,11 @@ class ApiAuthController extends Controller
         $accessToken = Session::get('accessToken');
 
         $currentDate = Carbon::now();
-        $formattedDate = $currentDate->format('Ymd');
+        $futureDate = $currentDate->addDays(7);
+        $formattedCurrentDate = $currentDate->format('Ymd');
+        $formattedFutureDate = $futureDate->format('Ymd');
 
-        $response = $client->request('GET', $api_host . '/api/ver1/OperationBerth/20140101/20140630', [
+        $response = $client->request('GET', $api_host . '/api/ver1/OperationBerth/'.$formattedCurrentDate.'/'.$formattedFutureDate, [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,
