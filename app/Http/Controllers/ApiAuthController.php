@@ -97,7 +97,7 @@ class ApiAuthController extends Controller
         $client = new Client();
         $api_host = env('API_HOST');
         $yearMonth = $request->input('inputYearMonth');
-        $formattedYearMonth = Carbon::createFromFormat('Ym', $yearMonth)->format('Ym');
+        $formattedYearMonth = Carbon::createFromFormat('Y-m', $yearMonth)->format('Ym');
         $agencyCode = Session::get('shipping_line');
 
         // Retrieve tokens from session
