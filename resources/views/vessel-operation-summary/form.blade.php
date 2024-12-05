@@ -35,7 +35,7 @@
                                 </div>
                             </div>
 
-                            <form class="form-horizontal" action="{{ route('container-info.search') }}" method="post">
+                            <form class="form-horizontal" action="{{ route('vessel-operation-summary.table') }}" method="post">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="inputYearMonth" class="col-md-3 form-label">Year-Month</label>
