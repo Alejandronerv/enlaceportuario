@@ -92,14 +92,18 @@ class ApiAuthController extends Controller
         }
     }
 
-    public function vesselOperationSummary()
+    public function vesselOperationSummary(Request $request)
     {
         $client = new Client();
         $api_host = env('API_HOST');
+        $yearMonth = $request->input('inputContainerNumber');
+        $formattedyearMonth = $yearMonth->format('Ym');
+        $agencyCode = Session::get('shipping_line');
+
         // Retrieve tokens from session
         $accessToken = Session::get('accessToken');
 
-        $response = $client->request('GET', $api_host . '/api/ver1/VesselOperationSummary/EMC/201406', [
+        $response = $client->request('GET', $api_host . '/api/ver1/VesselOperationSummary/'.$agencyCode.'/'.$formattedyearMonth, [
             'headers' => [
                 'accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $accessToken,

@@ -101,6 +101,9 @@ Route::get('/container-info.table', [ApiAuthController::class, 'containerOperati
 
 // VESSEL OPERATION SUMMARY
 Route::get('/vessel-operation-summary.table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table')->middleware('auth');
+Route::get('vessel-operation-summary.form', function () {
+    return view('vessel-operation-summary.form');
+})->name('vessel-operation-summary.form');
 // *********************************************************************************************************
 
 // USERS**************************************************************************************************************
