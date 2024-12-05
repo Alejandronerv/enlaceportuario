@@ -96,7 +96,7 @@ class ApiAuthController extends Controller
     {
         $client = new Client();
         $api_host = env('API_HOST');
-        $yearMonth = $request->input('inputContainerNumber');
+        $yearMonth = $request->input('inputYearMonth');
         $formattedyearMonth = $yearMonth->format('Ym');
         $agencyCode = Session::get('shipping_line');
 
