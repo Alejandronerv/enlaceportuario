@@ -32,14 +32,14 @@
 
                             <div class="form-group mb-0 mt-4 row">
                                 <div class="col mb-2">
-                                    <a href="{{ route('dashboard') }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
-                                        Dashboard</a>
+                                    <a href="{{ url()->previous() }}" class="btn btn-light"><i class="fe fe-arrow-left"></i>
+                                        Back</a>
                                 </div>
                             </div>
 
 
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered text-nowrap" id="example1"
+                                <table class="table table-striped table-bordered text-nowrap key-buttons" id="example"
                                     style="width:100%">
                                     <thead>
                                         <tr>

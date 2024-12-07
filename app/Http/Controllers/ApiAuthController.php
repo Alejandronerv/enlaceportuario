@@ -48,7 +48,7 @@ class ApiAuthController extends Controller
 
         $currentDate = Carbon::now();
         $currentFutureDate = Carbon::now();
-        $futureDate = $currentFutureDate->addDays(7);
+        $futureDate = $currentFutureDate->addDays(6);
         $formattedCurrentDate = $currentDate->format('Ymd');
         $formattedFutureDate = $futureDate->format('Ymd');
 
