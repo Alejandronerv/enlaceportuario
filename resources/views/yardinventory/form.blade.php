@@ -45,15 +45,9 @@
                                     </label>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Ship Agency</label>
-                                    <select name="shipagency" id="select-countries"
-                                        class="form-control custom-select select2">
-                                        <option value="UMS">UMS</option>
-                                        <option value="MSK">MAERSK</option>
-                                        <option value="MSC" selected>MSC</option>
-                                    </select>
-                                </div>
+                                {{-- INCLUDE LIST BOX WITH SHIPAGENCY CODES --}}
+                                <x-ship-angency-list-box />
+                                {{-- END LIST BOX --}}
 
                                 <div class="form-group">
                                     <label class="form-label">Type</label>
