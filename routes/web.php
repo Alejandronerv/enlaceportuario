@@ -32,6 +32,10 @@ Route::get('/forgot-password', function () {
     return view('forgot-password');
 })->name('forgot-password');
 
+Route::get('/password-reset', function () {
+    return view('password-reset');
+})->name('password-reset');
+
 Route::get('/register', function () {
     return view('register');
 })->name('register');
@@ -49,7 +53,7 @@ Route::get('/yardinventory/list', [InventoryYardFileController::class, 'list'])-
 
 
 // EMAIL RECOVERY
-Route::get('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
+Route::post('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
 // *********************************************************************************************************
 
 // BERTH*********************************************************************************************************
