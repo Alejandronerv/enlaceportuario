@@ -66,9 +66,9 @@
                                         <div class="col-sm-6 col-md-12">
 
                                             <form action="{{ route('user.update', $user->email) }}" method="GET">
-                                            @csrf
-                                            {{-- @method('PUT') --}}
-                                            <input type="hidden" name="email" value="{{ $user->email }}">
+                                                @csrf
+                                                {{-- @method('PUT') --}}
+                                                <input type="hidden" name="email" value="{{ $user->email }}">
                                                 <div class="form-group row">
                                                     <label for="inputTitle" class="col-md-3 form-label">Name</label>
                                                     <div class="col-md-9">
@@ -77,19 +77,9 @@
                                                             value="{{ $user->name }}" required>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 form-label">Ship Agency</label>
-                                                    <div class="col-md-9">
-                                                        <select name="shipagency" id="select-countries"
-                                                            class="form-control custom-select select2">
-                                                            <option value="{{ $user->shipping_line }}" selected>
-                                                                {{ $user->shipping_line }}</option>
-                                                            <option value="UMS">UMS</option>
-                                                            <option value="MSK">MAERSK</option>
-                                                            <option value="MSC">MSC</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                {{-- INCLUDE LIST BOX WITH SHIPAGENCY CODES --}}
+                                                <x-ship-angency-list-box />
+                                                {{-- END LIST BOX --}}
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-label">Role</label>
@@ -115,7 +105,8 @@
                                                     <label for="inputNote" class="col-md-3 form-label">Notes</label>
                                                     <div class="col-md-9">
                                                         <input type="text" class="form-control" id="inputNote"
-                                                            name="inputNote" placeholder="Notes" value="{{ $user->note }}">
+                                                            name="inputNote" placeholder="Notes"
+                                                            value="{{ $user->note }}">
                                                     </div>
                                                 </div>
 
@@ -126,7 +117,7 @@
                                                     <a href="{{ url()->previous() }}"
                                                         class="btn btn-lg btn-danger">Cancel</a>
                                                 </div>
-                                                </form>
+                                            </form>
 
                                         </div>
                                     </div>

@@ -60,6 +60,7 @@ $type = Session::get('type');
                             <li><a href="{{ route('users.table') }}"> Users</a></li>
                             <li><a href="{{ route('announcements.table') }}"> Announcements</a></li>
                             <li><a href="{{ route('yardinventory.table') }}"> Inventory Yard File Upload</a></li>
+                            <li><a href="{{ route('shipagency.create') }}"> Ship Agency Codes</a></li>
                         </ul>
                     </li>
                 @endif

@@ -84,6 +84,9 @@
                                                             <a class="dropdown-item"
                                                                 href="{{ route('user.activate', ['email' => $newUserRequest->email]) }}"><i
                                                                     class="fe fe-edit mr-2"></i> Activate User</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('user.delete', ['email' => $newUserRequest->email]) }}"><i
+                                                                    class="fe fe-trash mr-2"></i> Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>

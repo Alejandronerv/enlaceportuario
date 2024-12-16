@@ -23,13 +23,14 @@
 
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                     <div class="card">
-                        
+
                         @if ($errors->any())
-                        <div class="alert alert-danger" role="alert"><button type="button" class="close"
-                            data-dismiss="alert" aria-hidden="true">×</button>
+                            <div class="alert alert-danger" role="alert"><button type="button" class="close"
+                                    data-dismiss="alert" aria-hidden="true">×</button>
                                 <ul>
                                     @foreach ($errors->all() as $error)
-                                        <li class="fa fa-check-circle-o mr-2" aria-hidden="true">{{ $error }}</li>
+                                        <li class="fa fa-check-circle-o mr-2" aria-hidden="true">{{ $error }}
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -69,17 +70,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-label">Ship Agency</label>
-                                    <div class="col-md-9">
-                                        <select name="shipagency" id="select-countries"
-                                            class="form-control custom-select select2">
-                                            <option value="UMS">UMS</option>
-                                            <option value="MSK">MAERSK</option>
-                                            <option value="MSC" selected>MSC</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                {{-- INCLUDE LIST BOX WITH SHIPAGENCY CODES --}}
+                                <x-ship-angency-list-box/>
+                                {{-- END LIST BOX --}}
 
                                 <div class="form-group row">
                                     <label class="col-md-3 form-label">Role</label>

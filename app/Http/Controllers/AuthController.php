@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\ShipAgency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
@@ -296,4 +297,5 @@ class AuthController extends Controller
             return redirect()->route('users.table')->with('error', 'There was an error activating the user. Please try again.');
         }
     }
+
 }
