@@ -120,4 +120,31 @@ class ApiAuthController extends Controller
             return response()->json(['error' => 'No Data Found'], $response->getStatusCode());
         }
     }
+
+    public function vesselInfo(Request $request)
+    {
+        $client = new Client();
+        $api_host = env('API_HOST');
+        $vesselCode = Session::get('vesselCode');
+
+        // Retrieve tokens from session
+        $accessToken = Session::get('accessToken');
+
+        $response = $client->request('GET', $api_host . '/api/ver1/VesselInfo/'.$vesselCode, [
+            'headers' => [
+                'accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $accessToken,
+            ],
+        ]);
+
+        if ($response->getStatusCode() === 200) {
+            $data = json_decode($response->getBody()->getContents());
+            $veselFields = $data; // Assuming $data contains the fields needed for the view
+            return view('vessel-info.table', compact('veselInfoFields'));
+        } else {
+            // Handle authentication error
+            return response()->json(['error' => 'No Data Found'], $response->getStatusCode());
+        }
+    }
+
 }
