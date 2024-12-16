@@ -36,6 +36,8 @@ Route::get('/password-reset', function () {
     return view('password-reset');
 })->name('password-reset');
 
+Route::post('/password/reset', [MailController::class, 'saveNewPassword'])->name('password.update');
+
 Route::get('/register', function () {
     return view('register');
 })->name('register');
