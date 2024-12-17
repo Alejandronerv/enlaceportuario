@@ -33,7 +33,7 @@ function sendEmailUserNewRequest($name, $email, $company,$email_requested)
     // Define the email parameters
     $params = [
         'from'    => "CCTlink Notifications <notifications@{$domain}>",
-        'to'      => 'TEST <alejandro@nervcorp.io>',
+        'to'      => $email,
         'subject' => 'CCTlink - New User Request',
         'template' => 'register_new_user',
         'h:X-Mailgun-Variables' => json_encode(['name' => $name, 'email' => $email, 'company' => $company, 'email_requested' => $email_requested]),
