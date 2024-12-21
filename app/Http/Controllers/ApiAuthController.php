@@ -139,7 +139,7 @@ class ApiAuthController extends Controller
 
         if ($response->getStatusCode() === 200) {
             $data = json_decode($response->getBody()->getContents());
-            $veselFields = $data; // Assuming $data contains the fields needed for the view
+            $veselInfoFields = $data; // Assuming $data contains the fields needed for the view
             return view('vessel-info.table', compact('veselInfoFields'));
         } else {
             // Handle authentication error
