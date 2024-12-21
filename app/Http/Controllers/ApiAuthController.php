@@ -125,7 +125,7 @@ class ApiAuthController extends Controller
     {
         $client = new Client();
         $api_host = env('API_HOST');
-        $vesselCode = Session::get('vesselCode');
+        $vesselCode = $request->input('vesselCode');
 
         // Retrieve tokens from session
         $accessToken = Session::get('accessToken');

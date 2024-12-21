@@ -59,7 +59,11 @@
                                             <tr>
                                                 <td>{{ $berthField->PO_BERTH_ID }}</td>
                                                 <td>{{ $berthField->PO_PS }}</td>
-                                                <td>{{ $berthField->PO_VESSEL_NAME }}</td>
+                                                <td>
+                                                    <a href="{{ route('vessel-info.table', ['vesselCode' => $berthField->PO_VESSEL_CODE]) }}">
+                                                        {{ $berthField->PO_VESSEL_NAME }}
+                                                    </a>
+                                                </td>
                                                 <td>{{ $berthField->PO_VESSEL_CODE }}</td>
                                                 <td>{{ $berthField->PO_ARR_VOYAGE }}</td>
                                                 <td>{{ $berthField->PO_DEP_VOYAGE }}</td>
