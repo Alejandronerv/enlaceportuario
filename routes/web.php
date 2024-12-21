@@ -104,7 +104,7 @@ Route::get('/container-info/form', function () {
 })->name('container-info.form');
 Route::post('/container-info/search', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.search')->middleware('auth');
 Route::get('/container-info/table', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.table')->middleware('auth');
-Route::post('/vessel-info/table', [ApiAuthController::class, 'containerOperationInformation'])->name('vessel-info.table')->middleware('auth');
+Route::post('/vessel-info/table', [ApiAuthController::class, 'vesselInfo'])->name('vessel-info.table')->middleware('auth');
 // *********************************************************************************************************
 
 // VESSEL OPERATION SUMMARY
