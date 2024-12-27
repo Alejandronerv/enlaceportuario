@@ -37,7 +37,7 @@ class AuthController extends Controller
             //////////////////////////////////////////////////////////////
             return redirect()->intended('/dashboard');
         } else {
-            return redirect('/')->with('status', 'Wrong credential, please try again.');;
+            return redirect('/')->with('error', 'Wrong credential, please try again.');;
         }
     }
     public function logout()
@@ -45,7 +45,7 @@ class AuthController extends Controller
         Auth::logout();
         Session::forget('username');
         Session::forget('nameUser'); // Clear the user object from the session
-        return redirect('/')->with('status', 'You have been logged out!');
+        return redirect('/')->with('success', 'You have been logged out!');
     }
 
     public function save(Request $request)
