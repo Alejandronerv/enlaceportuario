@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\InventoryYardFileController;
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ShipAgency;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +19,13 @@ use App\Http\Controllers\ShipAgency;
 |
 */
 
-// LOGIN ROUTES*********************************************************************************************************
+// LOGIN ROUTES
 Route::get('/', function () {
     return view('login');
 })->name('login');
 
 Route::post('/', [AuthController::class, 'validateLogin'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/forgot-password', function () {
     return view('forgot-password');
@@ -38,156 +37,102 @@ Route::get('/password-reset', function () {
 
 Route::post('/password/reset', [MailController::class, 'saveNewPassword'])->name('password.update');
 
+Route::post('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
+
+// REGISTRATION ROUTES
 Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-// *********************************************************************************************************
-
-// DASHBOARD*********************************************************************************************************
-Route::get('/dashboard', [AnnouncementController::class, 'list'])->name('dashboard')->middleware('auth');
-
-// LIST FOR DASHBOARD
-Route::get('/yardinventory/list', [InventoryYardFileController::class, 'list'])->name('yardinventory.list')->middleware('auth');
-
-// *********************************************************************************************************
-
-
-// EMAIL RECOVERY
-Route::post('/send-email-recovery', [MailController::class, 'sendEmailRecoveryProcess'])->name('send-email-recovery');
-// *********************************************************************************************************
-
-// BERTH*********************************************************************************************************
-Route::get('/berth/table', [ApiAuthController::class, 'operationBerth'])->name('berth.table')->middleware('auth');
-// *********************************************************************************************************
-
-// ANNOUNCEMENTS*********************************************************************************************************
-
-//  FORM
-Route::get('/announcements/create', function () {
-    return view('announcements.create');
-})->name('announcements.create')->middleware('auth','check.type');
-// SAVE
-Route::post('/announcement/save', [AnnouncementController::class, 'save'])->name('announcement.save')->middleware('auth');
-// ANNOUNCEMENTS LIST   
-Route::get('/announcements/table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('auth','check.type');
-// SINGLE POST
-Route::get('/announcements/post', [AnnouncementController::class, 'show'])->name('announcements.post')->middleware('auth');
-// *********************************************************************************************************
-
-// INVENTORY YARD*********************************************************************************************************
-
-//  FORM
-Route::get('/yardinventory/form', function () {
-    return view('yardinventory.form');
-})->name('yardinventory.form')->middleware('auth');
-
-// SAVE
-Route::post('/yardinventory/save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save')->middleware('auth');
-
-// LIST   
-Route::get('/yardinventory/table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('auth','check.type');
-Route::get('/yardinventory/list-inventory-yard', [InventoryYardFileController::class, 'listInventoryYard'])->name('yardinventory.list-inventory-yard')->middleware('auth');
-Route::get('/yardinventory/list-density-forecast', [InventoryYardFileController::class, 'listDensityForecast'])->name('yardinventory.list-density-forecast')->middleware('auth');
-
-// DELETE
-Route::get('/yardinventory/delete', [InventoryYardFileController::class, 'delete'])->name('yardinventory.delete')->middleware('auth');
-// *********************************************************************************************************
-
-
-// CONTAINER OPERATION INFORMATION***************************************************************************************
-
-//  SEARCH FORM API RESTFUL
-Route::get('/container-info/form', function () {
-    return view('container-info.form');
-})->name('container-info.form');
-Route::post('/container-info/search', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.search')->middleware('auth');
-Route::get('/container-info/table', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.table')->middleware('auth');
-Route::get('/vessel-info/table', [ApiAuthController::class, 'vesselInfo'])->name('vessel-info.table')->middleware('auth');
-// *********************************************************************************************************
-
-// VESSEL OPERATION SUMMARY
-Route::post('/vessel-operation-summary/table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table')->middleware('auth');
-Route::get('vessel-operation-summary/form', function () {
-    return view('vessel-operation-summary.form');
-})->name('vessel-operation-summary.form')->middleware('auth');
-// *********************************************************************************************************
-
-// USERS**************************************************************************************************************
-
-// FORM TO CREATE A NEW USER BY EXTERNAL // SAVE
 Route::post('/user/save', [AuthController::class, 'save'])->name('user.save');
 
+// AUTHENTICATED ROUTES
+Route::middleware(['auth'])->group(function () {
 
-// LIST NEW REQUESTS
-Route::get('/users/new-users-list', [AuthController::class, 'newRequestList'])->name('users.new-users-list')->middleware('auth');
+    // DASHBOARD
+    Route::get('/dashboard', [AnnouncementController::class, 'list'])->name('dashboard');
 
-// FORM TO CREATE A NEW USER BY ADMIN
-Route::get('/user/form', function () {
-    return view('users.form');
-})->name('user.form')->middleware('auth');
+    // INVENTORY YARD
+    Route::prefix('yardinventory')->group(function () {
+        Route::get('/list', [InventoryYardFileController::class, 'list'])->name('yardinventory.list');
+        Route::get('/form', function () {
+            return view('yardinventory.form');
+        })->name('yardinventory.form');
+        Route::post('/save', [InventoryYardFileController::class, 'save'])->name('yardinventory.save');
+        Route::get('/table', [InventoryYardFileController::class, 'table'])->name('yardinventory.table')->middleware('check.type');
+        Route::get('/list-inventory-yard', [InventoryYardFileController::class, 'listInventoryYard'])->name('yardinventory.list-inventory-yard');
+        Route::get('/list-density-forecast', [InventoryYardFileController::class, 'listDensityForecast'])->name('yardinventory.list-density-forecast');
+        Route::get('/delete', [InventoryYardFileController::class, 'delete'])->name('yardinventory.delete');
+    });
 
-// SAVE NEW USER FROM ADMIN
-Route::post('/user/create', [AuthController::class, 'create'])->name('user.create')->middleware('auth');
+    // CONTAINER OPERATION INFORMATION
+    Route::prefix('container-info')->group(function () {
+        Route::get('/form', function () {
+            return view('container-info.form');
+        })->name('container-info.form');
+        Route::post('/search', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.search');
+        Route::get('/table', [ApiAuthController::class, 'containerOperationInformation'])->name('container-info.table');
+    });
 
-// USER RESET PASSWORD
-Route::get('/user/reset.password', [AuthController::class, 'updatePassword'])->name('user.reset.password');
+    // VESSEL OPERATION SUMMARY
+    Route::prefix('vessel-operation-summary')->group(function () {
+        Route::post('/table', [ApiAuthController::class, 'vesselOperationSummary'])->name('vessel-operation-summary.table');
+        Route::get('/form', function () {
+            return view('vessel-operation-summary.form');
+        })->name('vessel-operation-summary.form');
+    });
 
-// USER Activate
-Route::post('/user/activating', [AuthController::class, 'activatingUser'])->name('user.activating')->middleware('auth');
+    // USERS
+    Route::prefix('user')->group(function () {
+        Route::get('/form', function () {
+            return view('users.form');
+        })->name('user.form');
+        Route::post('/create', [AuthController::class, 'create'])->name('user.create');
+        Route::get('/reset.password', [AuthController::class, 'updatePassword'])->name('user.reset.password');
+        Route::post('/activating', [AuthController::class, 'activatingUser'])->name('user.activating');
+        Route::get('/profile', function () {
+            return view('users.profile');
+        })->name('user.profile');
+        Route::get('/activate', [AuthController::class, 'activateUser'])->name('user.activate');
+        Route::get('/profile-update', function () {
+            return view('users.profile-update');
+        })->name('user.profile-update');
+        Route::post('/update.password', [AuthController::class, 'updateProfile'])->name('user.update.password');
+        Route::get('/profile-edit', [AuthController::class, 'editUser'])->name('user.profile-edit');
+        Route::get('/update', [AuthController::class, 'updateUser'])->name('user.update');
+        Route::get('/delete', [AuthController::class, 'deleteUser'])->name('user.delete');
+    });
 
-// EDIT PROFILE
-Route::get('/user/profile', function () {
-    return view('users.profile');
-})->name('user.profile')->middleware('auth');
+    // ANNOUNCEMENTS
+    Route::prefix('announcements')->group(function () {
+        Route::get('/create', function () {
+            return view('announcements.create');
+        })->name('announcements.create')->middleware('check.type');
+        Route::post('/save', [AnnouncementController::class, 'save'])->name('announcement.save');
+        Route::get('/table', [AnnouncementController::class, 'table'])->name('announcements.table')->middleware('check.type');
+        Route::get('/post', [AnnouncementController::class, 'show'])->name('announcements.post');
+        Route::get('/delete', [AnnouncementController::class, 'delete'])->name('announcement.delete');
+        Route::get('/edit', [AnnouncementController::class, 'editAnnouncement'])->name('announcement.edit');
+        Route::get('/update', [AnnouncementController::class, 'updateAnnouncement'])->name('announcement.update');
+    });
 
-// USER ACTIVATE NEW REQUESTS
-Route::get('/user/activate', [AuthController::class, 'activateUser'])->name('user.activate');
+    // SHIP AGENCY CODES
+    Route::prefix('shipagency')->group(function () {
+        Route::get('/create', [ShipAgency::class, 'create'])->name('shipagency.create')->middleware('check.type');
+        Route::post('/store', [ShipAgency::class, 'store'])->name('shipagency.store')->middleware('check.type');
+        Route::get('/listbox', [ShipAgency::class, 'listBox'])->name('components.listboxShipAgencyCodes');
+    });
 
-// ********************************************************************************************************************************
+    // USERS LIST
+    Route::get('/users/new-users-list', [AuthController::class, 'newRequestList'])->name('users.new-users-list');
+    Route::get('/users/table', [AuthController::class, 'table'])->name('users.table')->middleware('check.type');
 
-// UPDATE PROFILE BY ADMIN*********************************************************************************************************
-Route::get('/user/profile-update', function () {
-    return view('users.profile-update');
-})->name('user.profile-update')->middleware('auth');
+    //BERTH LIST
+    Route::get('/berth/table', [ApiAuthController::class, 'operationBerth'])->name('berth.table');
 
-Route::post('/user/update.password', [AuthController::class, 'updateProfile'])->name('user.update.password')->middleware('auth');
-// EDIT PROFILE BY ADMIN
-Route::get('/user/profile-edit', [AuthController::class, 'editUser'])->name('user.profile-edit');
-Route::get('/user/update', [AuthController::class, 'updateUser'])->name('user.update');
+});
 
-// DELETE USER
-Route::get('/user/delete', [AuthController::class, 'deleteUser'])->name('user.delete');
-// ********************************************************************************************************************************
-
-
-// ANNOUNCEMENTS************************************************************************************************************   
-// LIST
-Route::get('/users/table', [AuthController::class, 'table'])->name('users.table')->middleware('auth','check.type');
-
-//DELETE
-Route::get('/announcement/delete', [AnnouncementController::class, 'delete'])->name('announcement.delete')->middleware('auth');
-
-//EDIT
-Route::get('/announcement/edit', [AnnouncementController::class, 'editAnnouncement'])->name('announcement.edit');
-Route::get('/announcement/update', [AnnouncementController::class, 'updateAnnouncement'])->name('announcement.update');
-// ************************************************************************************************************
-
-// CHARTS
-// Route::get('/estadisticas.sample', function () {
-//     return view('estadisticas.sample');
-// })->name('estadisticas.sample');
-// ************************************************************************************************************
-
-//SHIP AGENCY CODES
-
-Route::get('/shipagency/create', [ShipAgency::class, 'create'])->name('shipagency.create')->middleware('auth','check.type');
-Route::post('/shipagency/store', [ShipAgency::class, 'store'])->name('shipagency.store')->middleware('auth','check.type');
-Route::get('/shipagency/listbox', [ShipAgency::class, 'listBox'])->name('components.listboxShipAgencyCodes')->middleware('auth');
-
-// ERRORS
+// ERROR ROUTE
 Route::get('{any}', function () {
     return view('errors.404');
 })->where('any', '.*');
-// ************************************************************************************************************
