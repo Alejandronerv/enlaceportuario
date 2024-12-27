@@ -15,6 +15,11 @@
         <div class="app-content page-body">
             <div class="container">
 
+                <!---Global-loader-->
+                <div id="global-loader">
+                    <img src="/images/svgs/loader.svg" alt="loader">
+                </div>
+
                 <!--Page header-->
                 <div class="page-header">
                     <div class="page-leftheader">
