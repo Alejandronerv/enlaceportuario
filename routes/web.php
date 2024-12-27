@@ -130,6 +130,9 @@ Route::middleware(['auth'])->group(function () {
     //BERTH LIST
     Route::get('/berth/table', [ApiAuthController::class, 'operationBerth'])->name('berth.table');
 
+    //VESSEL INFO
+    Route::get('/vessel-info/table', [ApiAuthController::class, 'vesselInfo'])->name('vessel-info.table');
+
 });
 
 // ERROR ROUTE
