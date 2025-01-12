@@ -129,6 +129,9 @@ Route::middleware(['auth'])->group(function () {
 
     //BERTH LIST
     Route::get('/berth/table', [ApiAuthController::class, 'operationBerth'])->name('berth.table');
+    Route::get('/berth/graphic', function () { return view('berth.graphic'); });
+    Route::get('/operation-berth-graphic', [ApiAuthController::class, 'operationBerthGraphic'])->name('operation-berth-graphic');
+
 
     //VESSEL INFO
     Route::get('/vessel-info/table', [ApiAuthController::class, 'vesselInfo'])->name('vessel-info.table');
