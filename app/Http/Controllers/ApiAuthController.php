@@ -93,7 +93,7 @@ class ApiAuthController extends Controller
             if ($response->getStatusCode() === 200) {
                 $data = json_decode($response->getBody()->getContents(), true); // Decode as associative array
                 $jsonData = json_encode($data, JSON_PRETTY_PRINT); // Encode back to JSON with pretty print
-                return view('berth-data', compact('jsonData'));
+                return view('berth.data', compact('jsonData'));
             } else {
                 // Handle authentication error
                 return response()->json(['error' => 'No Data Found'], $response->getStatusCode());

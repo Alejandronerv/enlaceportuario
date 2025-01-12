@@ -130,7 +130,7 @@ Route::middleware(['auth'])->group(function () {
     //BERTH LIST
     Route::get('/berth/table', [ApiAuthController::class, 'operationBerth'])->name('berth.table');
     Route::get('/berth/graphic', function () { return view('berth.graphic'); });
-    Route::get('/operation-berth-graphic', [ApiAuthController::class, 'operationBerthGraphic'])->name('operation-berth-graphic');
+    Route::get('/berth/data', [ApiAuthController::class, 'operationBerthGraphic'])->name('berth.data');
 
 
     //VESSEL INFO
