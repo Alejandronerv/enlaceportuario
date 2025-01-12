@@ -12,6 +12,6 @@
 </head>
 <body>
     <h1>Operation Berth Graphic</h1>
-    {{-- <pre>{{ $jsonData }}</pre> --}}
+    <pre>{{ $jsonData }}</pre>
 </body>
 </html>
