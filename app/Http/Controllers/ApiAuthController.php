@@ -70,35 +70,34 @@ class ApiAuthController extends Controller
     }
 
 
-        public function operationBerthGraphic()
-        {
-            $client = new Client();
-            $api_host = env('API_HOST');
-            // Retrieve tokens from session
-            $accessToken = Session::get('accessToken');
-    
-            $currentDate = Carbon::now();
-            $currentFutureDate = Carbon::now();
-            $futureDate = $currentFutureDate->addDays(6);
-            $formattedCurrentDate = $currentDate->format('Ymd');
-            $formattedFutureDate = $futureDate->format('Ymd');
-    
-            $response = $client->request('GET', $api_host . '/api/ver1/OperationBerth/'.$formattedCurrentDate.'/'.$formattedFutureDate, [
-                'headers' => [
-                    'accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $accessToken,
-                ],
-            ]);
-    
-            if ($response->getStatusCode() === 200) {
-                $data = json_decode($response->getBody()->getContents(), true); // Decode as associative array
-                $jsonData = json_encode($data, JSON_PRETTY_PRINT); // Encode back to JSON with pretty print
-                return view('berth.data', compact('jsonData'));
-            } else {
-                // Handle authentication error
-                return response()->json(['error' => 'No Data Found'], $response->getStatusCode());
-            }
+    public function operationBerthGraphic()
+    {
+        $client = new Client();
+        $api_host = env('API_HOST');
+        // Retrieve tokens from session
+        $accessToken = Session::get('accessToken');
+
+        $currentDate = Carbon::now();
+        $currentFutureDate = Carbon::now();
+        $futureDate = $currentFutureDate->addDays(6);
+        $formattedCurrentDate = $currentDate->format('Ymd');
+        $formattedFutureDate = $futureDate->format('Ymd');
+
+        $response = $client->request('GET', $api_host . '/api/ver1/OperationBerth/'.$formattedCurrentDate.'/'.$formattedFutureDate, [
+            'headers' => [
+                'accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $accessToken,
+            ],
+        ]);
+
+        if ($response->getStatusCode() === 200) {
+            $data = json_decode($response->getBody()->getContents(), true); // Decode as associative array
+            return response()->json($data, 200, [], JSON_PRETTY_PRINT);
+        } else {
+            // Handle authentication error
+            return response()->json(['error' => 'No Data Found'], $response->getStatusCode());
         }
+    }
 
     public function containerOperationInformation(Request $request)
     {
