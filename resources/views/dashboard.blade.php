@@ -75,7 +75,7 @@ $latestDensityForeCast = latestDensityForecast();
                                 {{-- <a href="{{ asset('storage/uploads/'. $latestDensityForeCast) }}" class="btn btn-primary"><i class="fe fe-download mr-2"></i>Get Latest</a> --}}
                                 <a href="{{ route('berth.table') }}" class="btn btn-primary"><i
                                         class="fe fe-anchor mr-2"></i>View Berth</a>
-                                <a href="{{ route('berth.data') }}" class="btn btn-info"><i
+                                <a href="{{ route('berth.graphic') }}" class="btn btn-info"><i
                                         class="fe fe-activity mr-2"></i>View Graphic</a>
                             </div>
                         </div>
