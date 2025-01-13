@@ -96,7 +96,7 @@
    <!-- Apex Charts JS -->
    <script src="{{ asset('libs/apexcharts/apexcharts.min.js') }}"></script>
        <!-- Internal Apex Timeline Charts JS -->
-	   <script src="{{ asset('js/apexcharts-timeline.js') }}"></script>
+	   <script src="{{ asset('js/berth-data.js') }}"></script>
 
 
    <!-- WYSIWYG Editor js -->
