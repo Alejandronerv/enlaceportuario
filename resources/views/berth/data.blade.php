@@ -1,7 +1,7 @@
 <html>
 <body>
     <script type="application/json" id="json-data">
-        {!! json_encode($jsonData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+        {!! json_encode($jsonData ?? [], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
 
     <script>
