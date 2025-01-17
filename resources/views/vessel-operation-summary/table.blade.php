@@ -59,9 +59,12 @@
 
                                         @foreach ($veselFields as $veselField)
                                             <tr>
-                                                <a href="{{ route('vessel-info.table', ['vesselCode' => $veselField->PO_VESSEL_CODE]) }}">
-                                                    {{ $veselField->PO_VESSEL_NAME }}
-                                                </a>
+                                                <td>
+                                                    <a
+                                                        href="{{ route('vessel-info.table', ['vesselCode' => $veselField->PO_VESSEL_CODE]) }}">
+                                                        {{ $veselField->PO_VESSEL_NAME }}
+                                                    </a>
+                                                </td>
                                                 <td>{{ $veselField->PO_COMM_DATE_TIME }}</td>
                                                 <td>{{ $veselField->PO_TTL_VALUE }}</td>
                                                 <td>{{ $veselField->PO_DISG_VALUE }}</td>
