@@ -313,8 +313,6 @@ class AuthController extends Controller
                 $user->status = 0;
                 $user->save();
 
-                sendEmailUserActivated($nameLastName, $newPassword, $userEmail);
-
                 return redirect()->route('users.new-users-list')->with('error', 'User '.$userEmail.' account has been rejected.');
             } else {
                 return redirect()->route('users.new-users-list')->with('error', 'User not found.');
