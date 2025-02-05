@@ -17,7 +17,7 @@ class AnnouncementController extends Controller
             'inputTitle' => 'required|string|max:100',
             'inputAvailableDate' => 'required|date_format:Y-m-d',
             // 'inputAvailableTime' => 'required|date_format:H:i:s',
-            'inputEndDate' => 'required|date_format:Y-m-d',
+            'inputEndDate' => 'required|date_format:Y-m-d|after:inputAvailableDate',
             // 'inputEndTime' => 'required|date_format:H:i:s',
             // 'createUser' => 'required|string|max:255',
         ]);

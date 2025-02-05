@@ -88,19 +88,9 @@
                                                             value="{{ $user->email }}" disabled>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 form-label">Ship Agency</label>
-                                                    <div class="col-md-9">
-                                                        <select name="shipagency" id="select-countries"
-                                                            class="form-control custom-select select2" required>
-                                                            <option value="{{ $user->shipping_line }}" selected>
-                                                                {{ $user->shipping_line }}</option>
-                                                            <option value="UMS">UMS</option>
-                                                            <option value="MSK">MAERSK</option>
-                                                            <option value="MSC">MSC</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                  {{-- INCLUDE LIST BOX WITH SHIPAGENCY CODES --}}
+                                                  <x-ship-angency-list-box />
+                                                  {{-- END LIST BOX --}}
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-label">Role</label>

@@ -298,4 +298,31 @@ class AuthController extends Controller
         }
     }
 
+    public function rejectUser(Request $request)
+    {
+
+        try {
+            $userEmail = $request->input('email');
+            $nameLastName = $request->input('name');
+            $user = User::where('email', $userEmail)->first();
+            $newPassword = generateRandomPassword();
+
+            if ($user) {
+                $user->shipping_line = $request->input('shipagency');
+                $user->password = $newPassword;
+                $user->status = 0;
+                $user->save();
+
+                sendEmailUserActivated($nameLastName, $newPassword, $userEmail);
+
+                return redirect()->route('users.new-users-list')->with('error', 'User '.$userEmail.' account has been rejected.');
+            } else {
+                return redirect()->route('users.new-users-list')->with('error', 'User not found.');
+            }
+        } catch (\Exception $e) {
+            Log::error($e); // Log the error
+            return redirect()->route('users.new-users-list')->with('error', 'There was an error rejecting the user. Please try again.');
+        }
+    }
+
 }

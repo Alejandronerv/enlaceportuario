@@ -101,6 +101,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profile-edit', [AuthController::class, 'editUser'])->name('user.profile-edit');
         Route::get('/update', [AuthController::class, 'updateUser'])->name('user.update');
         Route::get('/delete', [AuthController::class, 'deleteUser'])->name('user.delete');
+        Route::get('/reject', [AuthController::class, 'rejectUser'])->name('user.reject');
     });
 
     // ANNOUNCEMENTS
