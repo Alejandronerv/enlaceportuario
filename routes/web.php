@@ -121,6 +121,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('shipagency')->group(function () {
         Route::get('/create', [ShipAgency::class, 'create'])->name('shipagency.create')->middleware('check.type');
         Route::post('/store', [ShipAgency::class, 'store'])->name('shipagency.store')->middleware('check.type');
+        Route::get('/table', [ShipAgency::class, 'listBoxMain'])->name('shipagency.table')->middleware('check.type');
         Route::get('/listbox', [ShipAgency::class, 'listBox'])->name('components.listboxShipAgencyCodes');
     });
 
