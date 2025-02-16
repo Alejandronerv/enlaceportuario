@@ -1,5 +1,5 @@
 @include('layouts.main-header')
-
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
 <div class="page">
     <div class="page-main">
 
