@@ -4,6 +4,8 @@ use Mailgun\Mailgun;
 use App\Models\InventoryYardFile;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
+
 
 
 function generateRandomFourDigitNumber()
@@ -94,8 +96,11 @@ function sendEmailUserActivated($nameLastName,$newPassword,$userEmail)
 
 function latestRecordYardInventory()
 {
+    $agencyCode = Session::get('shipping_line');
     // $latestRecord = InventoryYardFile::orderBy('created_at', 'desc')->first();
-    $latestRecord = InventoryYardFile::where('file_type', 'IY')->orderBy('created_at', 'desc')->first();
+    $latestRecord = InventoryYardFile::where('file_type', 'IY')
+    ->where('agency_code', $agencyCode)
+    ->orderBy('created_at', 'desc')->first();
     // Assign the file_name to a variable and store it in the session
 
     if ($latestRecord) {
@@ -107,7 +112,10 @@ function latestRecordYardInventory()
 
 function latestDensityForecast()
 {
-    $latestRecord = InventoryYardFile::where('file_type', 'DF')->orderBy('created_at', 'desc')->first();
+    $agencyCode = Session::get('shipping_line');
+    $latestRecord = InventoryYardFile::where('file_type', 'DF')
+    ->where('agency_code', $agencyCode)
+    ->orderBy('created_at', 'desc')->first();
 
     if ($latestRecord) {
         $latestDensityForecast = $latestRecord->file_name;
