@@ -47,7 +47,7 @@ $latestDensityForeCast = latestDensityForecast();
                                 <h5 class="card-title mb-3">Inventory Yard</h5>
                                 <p class="card-text">Obtain the newest inventory yard data file.</p>
                                 <a href="{{ asset('storage/uploads/' . $latestInventoryYardFile) }}"
-                                    class="btn btn-primary"><i class="fe fe-download mr-2"></i>Get Latest</a>
+                                    class="btn btn-primary @if(!$latestInventoryYardFile) disabled @endif"><i class="fe fe-download mr-2"></i>Get Latest</a>
                                 <a href="{{ route('yardinventory.list-inventory-yard') }}" class="btn btn-info"><i
                                         class="fe fe-list mr-2"></i>All Files</a>
                             </div>
@@ -60,7 +60,7 @@ $latestDensityForeCast = latestDensityForecast();
                                 <h5 class="card-title mb-3">CCT Density Forecast</h5>
                                 <p class="card-text">CCT density forecast 7 days projection.</p>
                                 <a href="{{ asset('storage/uploads/' . $latestDensityForeCast) }}"
-                                    class="btn btn-primary"><i class="fe fe-download mr-2"></i>Get Latest</a>
+                                    class="btn btn-primary @if(!$latestDensityForeCast) disabled @endif"><i class="fe fe-download mr-2"></i>Get Latest</a>
                                 <a href="{{ route('yardinventory.list-density-forecast') }}" class="btn btn-info"><i
                                         class="fe fe-list mr-2"></i>All Files</a>
                             </div>
