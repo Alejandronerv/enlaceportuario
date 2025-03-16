@@ -63,6 +63,7 @@ class AuthController extends Controller
             $user->note = $request->input('companyName');
             $user->password = "P12345.9876p*";
             $user->status = 2; // 0 = Inactive, 1 = Active, 2 = New Request
+            $user->type = 2; // 1 = Admin, 2 = Shipagency
             $user->save();
             sendEmailUserNewRequest($user->name, $email_system_admin, $user->note, $user->email);
 
